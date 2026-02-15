@@ -1,0 +1,54 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: contatos-nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - contatos-network
+
+  php:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    container_name: contatos-php
+    volumes:
+      - ./src:/var/www/html
+      - ./docker/php/local-php.ini:/usr/local/etc/php/conf.d/local-php.ini
+      - vendor_data:/var/www/html/vendor
+      - node_modules_data:/var/www/html/node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - contatos-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: contatos-mysql
+    ports:
+      - "3307:3306"   # porta externa 3307 para evitar conflito com MySQL local
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: contatos_db
+      MYSQL_USER: contatos_user
+      MYSQL_PASSWORD: secret
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - contatos-network
+
+volumes:
+  mysql_data:
+  vendor_data:
+  node_modules_data:
+
+networks:
+  contatos-network:
+    driver: bridge

@@ -1,0 +1,30 @@
+<?php
+
+namespace App\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use App\Models\Contact;
+use App\Policies\ContactPolicy;
+use App\Models\Task;
+use App\Policies\TaskPolicy;
+
+class AppServiceProvider extends ServiceProvider
+{
+    /**
+     * Register any application services.
+     */
+    public function register(): void
+    {
+        //
+    }
+
+    /**
+     * Bootstrap any application services.
+     */
+    public function boot(): void
+    {
+        Gate::policy(Contact::class, ContactPolicy::class);
+        Gate::policy(Task::class, TaskPolicy::class);
+    }
+}

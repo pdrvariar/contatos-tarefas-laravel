@@ -47,7 +47,7 @@
             --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 
             --sidebar-width: 280px;
-            --header-height: 70px;
+            --header-height: 90px;
         }
 
         /* Tema Escuro */
@@ -110,6 +110,45 @@
             gap: 0.75rem;
             background: linear-gradient(to bottom, var(--bg-sidebar) 90%, var(--border-color));
             border-bottom: none;
+        }
+
+        .sidebar-search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .sidebar-search-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            transition: all 0.2s;
+            pointer-events: none;
+        }
+
+        .sidebar-search-input {
+            width: 100%;
+            height: 40px;
+            padding-left: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--input-bg);
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .sidebar-search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: var(--bg-card);
+            box-shadow: 0 0 0 4px var(--primary-light);
+        }
+
+        .sidebar-search-input:focus + i {
+            color: var(--primary);
         }
 
         .brand-icon {
@@ -241,9 +280,9 @@
         }
 
         .header-title {
-            font-size: 1.5rem;
+            font-size: 2.2rem;
             font-weight: 800;
-            letter-spacing: -0.03em;
+            letter-spacing: -0.04em;
             background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 50%, var(--secondary) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -263,12 +302,12 @@
         .header-title::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -6px;
             left: 0;
-            width: 40px;
-            height: 3px;
+            width: 60px;
+            height: 4px;
             background: linear-gradient(90deg, var(--primary), transparent);
-            border-radius: 3px;
+            border-radius: 4px;
             transition: width 0.3s ease;
         }
 
@@ -535,7 +574,7 @@
                 padding: 0 1rem;
             }
             .header-title {
-                font-size: 1.1rem;
+                font-size: 1.6rem;
             }
             .header-title::after {
                 height: 2px;
@@ -545,7 +584,7 @@
 
         @media (max-width: 480px) {
             .header-title {
-                font-size: 0.9rem;
+                font-size: 1.2rem;
             }
         }
     </style>
@@ -557,8 +596,9 @@
         <div class="overlay"></div>
         <nav id="sidebar" class="d-flex flex-column">
             <div class="sidebar-header">
-                <div class="brand-icon">
-                    <i class="fas fa-rocket"></i>
+                <div class="sidebar-search-wrapper">
+                    <input type="text" class="sidebar-search-input" id="sidebarSearch" placeholder="Pesquisar menu...">
+                    <i class="fas fa-search"></i>
                 </div>
             </div>
 
@@ -740,6 +780,26 @@
             overlay.addEventListener('click', function() {
                 sidebar.classList.remove('active');
                 overlay.classList.remove('active');
+            });
+        }
+
+        // Sidebar Menu Filter
+        const sidebarSearch = document.getElementById('sidebarSearch');
+        if (sidebarSearch) {
+            sidebarSearch.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase().trim();
+                const navItems = document.querySelectorAll('.nav-section .nav-item');
+
+                navItems.forEach(item => {
+                    const text = item.querySelector('span')?.textContent.toLowerCase() || '';
+                    if (text.includes(searchTerm)) {
+                        item.style.display = '';
+                        item.style.opacity = '1';
+                    } else {
+                        item.style.display = 'none';
+                        item.style.opacity = '0';
+                    }
+                });
             });
         }
     });

@@ -34,6 +34,7 @@
             --bg-body: #f9fafb;
             --bg-card: #ffffff;
             --bg-header: #ffffff;
+            --bg-header-alpha: rgba(255, 255, 255, 0.8);
             --bg-sidebar: #ffffff;
             --border-color: #e5e7eb;
             --text-primary: #111827;
@@ -58,6 +59,7 @@
             --bg-body: #111827;
             --bg-card: #1f2937;
             --bg-header: #1f2937;
+            --bg-header-alpha: rgba(31, 41, 55, 0.8);
             --bg-sidebar: #1f2937;
             --border-color: #374151;
             --text-primary: #f9fafb;
@@ -88,12 +90,13 @@
             min-width: var(--sidebar-width);
             max-width: var(--sidebar-width);
             background: var(--bg-sidebar);
-            border-right: 1px solid var(--border-color);
+            border-right: none;
             transition: all 0.3s ease;
             position: sticky;
             top: 0;
             height: 100vh;
             z-index: 1000;
+            box-shadow: 10px 0 40px -15px rgba(0, 0, 0, 0.1);
         }
 
         #sidebar.collapsed {
@@ -105,7 +108,8 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            border-bottom: 1px solid var(--border-color);
+            background: linear-gradient(to bottom, var(--bg-sidebar) 90%, var(--border-color));
+            border-bottom: none;
         }
 
         .brand-icon {
@@ -174,7 +178,8 @@
 
         .sidebar-footer {
             padding: 1.5rem;
-            border-top: 1px solid var(--border-color);
+            background: linear-gradient(to top, var(--bg-sidebar) 90%, var(--border-color));
+            border-top: none;
             margin-top: auto;
         }
 
@@ -221,8 +226,8 @@
 
         .main-header {
             height: var(--header-height);
-            background: var(--bg-header);
-            border-bottom: 1px solid var(--border-color);
+            background: var(--bg-header-alpha);
+            border-bottom: none;
             padding: 0 2rem;
             display: flex;
             align-items: center;
@@ -230,39 +235,45 @@
             position: sticky;
             top: 0;
             z-index: 999;
+            box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
         }
 
-        .search-wrapper {
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0;
             position: relative;
-            width: 300px;
+            display: inline-block;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 2px 10px rgba(79, 70, 229, 0.1));
         }
 
-        .search-wrapper i {
+        .header-title:hover {
+            transform: translateY(-1px);
+            filter: drop-shadow(0 4px 15px rgba(79, 70, 229, 0.25));
+        }
+
+        .header-title::after {
+            content: '';
             position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            bottom: -4px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
         }
 
-        .search-wrapper input {
+        .header-title:hover::after {
             width: 100%;
-            height: 42px;
-            padding-left: 2.5rem;
-            border: 1px solid var(--border-color);
-            border-radius: 40px;
-            background: var(--input-bg);
-            font-size: 0.9rem;
-            color: var(--text-primary);
-            transition: all 0.2s;
-        }
-
-        .search-wrapper input:focus {
-            outline: none;
-            border-color: var(--primary);
-            background: var(--bg-card);
-            box-shadow: 0 0 0 4px var(--primary-light);
         }
 
         .header-actions {
@@ -348,7 +359,7 @@
 
         .page-hero {
             padding: 2rem 2rem 0;
-            background: transparent;
+            background: linear-gradient(to bottom, var(--bg-header-alpha), transparent);
         }
 
         .breadcrumb {
@@ -523,8 +534,18 @@
             .main-header {
                 padding: 0 1rem;
             }
-            .search-wrapper {
-                width: 200px;
+            .header-title {
+                font-size: 1.1rem;
+            }
+            .header-title::after {
+                height: 2px;
+                bottom: -2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-title {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -539,7 +560,6 @@
                 <div class="brand-icon">
                     <i class="fas fa-rocket"></i>
                 </div>
-                <span class="brand-text">Rattes SA</span>
             </div>
 
             <ul class="nav-section flex-grow-1">
@@ -557,17 +577,6 @@
                 </li>
             </ul>
 
-            <div class="sidebar-footer">
-                <div class="user-info">
-                    <div class="user-avatar">
-                        {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
-                    </div>
-                    <div class="user-details">
-                        <div class="user-name">{{ Auth::user()->name }}</div>
-                        <div class="user-role">Administrador</div>
-                    </div>
-                </div>
-            </div>
         </nav>
     @endauth
 
@@ -580,9 +589,8 @@
                     </button>
                 @endauth
 
-                <div class="search-wrapper">
-                    <i class="fas fa-search"></i>
-                    <input type="text" placeholder="Pesquisar...">
+                <div class="header-title-container">
+                    <h1 class="header-title">Task Manager System</h1>
                 </div>
             </div>
 
@@ -648,9 +656,6 @@
                     </div>
                     <div>
                         @yield('header_actions')
-                        <span class="badge bg-light text-dark py-2 px-3 rounded-pill">
-                            <i class="far fa-calendar-alt me-2 text-primary"></i> {{ date('d/m/Y') }}
-                        </span>
                     </div>
                 </div>
             </div>

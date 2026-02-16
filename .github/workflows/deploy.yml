@@ -42,7 +42,9 @@ jobs:
       uses: easingthemes/ssh-deploy@v5.0.0
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        # Adicionado ConnectTimeout e ServerAliveInterval para evitar timeouts
         ARGS: "-rlgoDzvc -i --delete"
+        SSH_CMD_ARGS: "-o ConnectTimeout=60 -o ServerAliveInterval=60 -o StrictHostKeyChecking=no"
         SOURCE: "src/"
         TARGET: "/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core" 
         REMOTE_HOST: ${{ secrets.HOSTINGER_IP }}
@@ -57,16 +59,15 @@ jobs:
         username: ${{ secrets.HOSTINGER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.HOSTINGER_PORT }}
+        # Aumentado timeout do comando remoto
+        command_timeout: 30m
         script: |
           PROJECT_ROOT="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core"
           PUBLIC_HTML="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/public_html"
-          
-          # Define o executável PHP correto (Hostinger)
           PHP_BIN="/usr/bin/php82"
           
           cd $PROJECT_ROOT
           
-          # Usa o PHP 8.2 explicitamente
           $PHP_BIN artisan migrate --force
           $PHP_BIN artisan config:cache
           $PHP_BIN artisan route:cache

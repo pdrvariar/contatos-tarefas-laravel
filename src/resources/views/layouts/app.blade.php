@@ -693,7 +693,7 @@
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><h6 class="dropdown-header">Minha Conta</h6></li>
-                            <li><a class="dropdown-item" href="#"><i class="far fa-user"></i> Perfil</a></li>
+                            <li><a class="dropdown-item" href="{{ route('profile.edit') }}"><i class="far fa-user"></i> Perfil</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configurações</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li>

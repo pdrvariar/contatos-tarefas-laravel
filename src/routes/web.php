@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\TaskController;
+use App\Http\Controllers\Web\ProfileController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -15,12 +16,15 @@ Route::get('/', function () {
     return Auth::check() ? redirect('/contacts') : redirect('/login');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 Route::middleware(['auth'])->group(function () {
     // Rotas principais que carregam as Views
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
+
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     // Rotas internas para o frontend (AJAX)
     // Usamos o prefixo 'web-api' e o nome 'web-api.' para evitar conflito com as rotas da API pública

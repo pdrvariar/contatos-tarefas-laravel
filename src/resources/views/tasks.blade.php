@@ -14,10 +14,16 @@
             <form id="searchForm" onsubmit="event.preventDefault(); loadTasks(1);">
                 <div class="row g-3">
                     <div class="col-md-3">
-                        <input type="text" class="form-control bg-light" id="search_term" placeholder="Buscar tarefa...">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fas fa-search text-muted"></i></span>
+                            <input type="text" class="form-control bg-light border-start-0" id="search_term" placeholder="Buscar tarefa...">
+                        </div>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control bg-light" id="search_tags" placeholder="Tags">
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0"><i class="fas fa-tags text-muted"></i></span>
+                            <input type="text" class="form-control bg-light border-start-0" id="search_tags" placeholder="Tags">
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <select class="form-select bg-light" id="search_status">
@@ -179,9 +185,68 @@
             color: var(--primary);
         }
 
+        .tagify {
+            --tagify-dd-bg-color: #fff;
+            --tags-border-color: var(--border-color);
+            --tags-hover-border-color: var(--primary);
+            --tags-focus-border-color: var(--primary);
+            border-radius: 0 8px 8px 0 !important;
+            border-color: var(--border-color) !important;
+            background: #fff;
+            padding: 2px 6px !important;
+            height: auto !important;
+            flex: 1;
+        }
+
+        .tagify:hover {
+            border-color: var(--primary) !important;
+        }
+
+        .tagify.tagify--focus {
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.25rem rgba(30, 74, 122, 0.1) !important;
+        }
+
         .tagify__tag {
-            border-radius: 30px !important;
-            font-size: 0.85rem !important;
+            background: #e2e8f0 !important;
+            border-radius: 6px !important;
+            padding: 2px 6px !important;
+            margin: 3px !important;
+            font-weight: 500 !important;
+            border: none !important;
+        }
+
+        .tagify__tag > div {
+            padding: 0.2em 0.5em !important;
+        }
+
+        .tagify__tag__removeBtn {
+            margin-right: 4px !important;
+            margin-left: 2px !important;
+            color: currentColor !important;
+            opacity: 0.5;
+        }
+
+        .tagify__tag__removeBtn:hover {
+            opacity: 1;
+            background: rgba(0,0,0,0.1) !important;
+        }
+
+        .tagify__dropdown {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid var(--border-color) !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+        }
+
+        .tagify__dropdown__item {
+            padding: 8px 12px !important;
+            border-radius: 0 !important;
+        }
+
+        .tagify__dropdown__item--active {
+            background: var(--primary) !important;
+            color: white !important;
         }
     </style>
 @endsection
@@ -191,18 +256,20 @@
         let currentTasksPage = 1;
         let tagifyInput, tagifySearch;
 
-        // Cores das tags baseadas na nova paleta azul
+        // Cores inspiradas no Jira/Modernas
         const colorMap = {
-            primary: { bg: '#1E4A7A', text: '#ffffff' },
-            dark: { bg: '#0B2B5E', text: '#ffffff' },
-            light: { bg: '#4A90E2', text: '#ffffff' },
-            accent: { bg: '#2C3E50', text: '#E6F0FA' },
-            soft: { bg: '#B0C4DE', text: '#0B2B5E' }
+            primary: { bg: '#DEEBFF', text: '#0747A6', border: '#B3D4FF' },
+            dark: { bg: '#EAE6FF', text: '#403294', border: '#C0B6F2' },
+            light: { bg: '#E3FCEF', text: '#006644', border: '#ABF5D1' },
+            accent: { bg: '#FFF0B3', text: '#172B4D', border: '#FFE380' },
+            soft: { bg: '#FFFAE6', text: '#FF8B00', border: '#FFF0B3' },
+            danger: { bg: '#FFEBE6', text: '#BF2600', border: '#FFBDAD' }
         };
 
         function getTagStyle(color) {
-            const c = colorMap[color] || colorMap.soft;
-            return `background: ${c.bg}; color: ${c.text};`;
+            const colors = ['primary', 'dark', 'light', 'accent', 'soft', 'danger'];
+            const c = colorMap[color] || colorMap[colors[Math.floor(Math.random() * colors.length)]];
+            return `background: ${c.bg}; color: ${c.text}; border: 1px solid ${c.border};`;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -218,9 +285,10 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const colors = ['primary', 'dark', 'light', 'accent', 'soft'];
+                const colors = ['primary', 'dark', 'light', 'accent', 'soft', 'danger'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                tagData.style = getTagStyle(randomColor);
+                const style = colorMap[randomColor];
+                tagData.style = `--tag-bg: ${style.bg}; --tag-text-color: ${style.text}; --tag-hover: ${style.bg}; border: 1px solid ${style.border};`;
             };
 
             const config = {

@@ -562,12 +562,15 @@
 
         .badge-tag {
             padding: 0.25rem 0.6rem;
-            border-radius: 30px; /* Arredondado */
+            border-radius: 6px; /* Mais quadrado, estilo Jira */
             font-size: 0.75rem;
             font-weight: 600;
             background: #E6F0FA;
             color: var(--text-secondary);
-            border: 1px solid rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+            display: inline-flex;
+            align-items: center;
+            line-height: 1;
         }
 
         .overlay {

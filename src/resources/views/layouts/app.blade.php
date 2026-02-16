@@ -8,68 +8,36 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Tagify CSS -->
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
-
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
-        /* Tema Claro (padrão) */
         :root {
-            --primary-light: #eef2ff;
-            --primary: #4f46e5;
-            --primary-dark: #4338ca;
-            --secondary: #f59e0b;
-            --success: #10b981;
-            --danger: #ef4444;
-            --warning: #f59e0b;
-            --info: #3b82f6;
+            --color-dark-purple: #211c33;
+            --color-teal: #2b818c;
+            --color-peach: #ffc994;
+            --color-pink: #ed2860;
+            --color-magenta: #990069;
 
-            --bg-body: #f9fafb;
+            --primary: var(--color-teal);
+            --primary-dark: #1e6a73;
+            --secondary: var(--color-pink);
+            --secondary-dark: #7a0050;
+            --accent: var(--color-peach);
+
+            --bg-body: #fefaf5;
             --bg-card: #ffffff;
-            --bg-header: #ffffff;
-            --bg-header-alpha: rgba(255, 255, 255, 0.8);
-            --bg-sidebar: #ffffff;
-            --border-color: #e5e7eb;
-            --text-primary: #111827;
-            --text-secondary: #4b5563;
-            --text-muted: #6b7280;
-            --text-light: #9ca3af;
-            --hover-bg: #f3f4f6;
-            --input-bg: #f9fafb;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            --bg-sidebar: var(--color-dark-purple);
+            --border-color: #ffe0c0;
+            --text-primary: #211c33;
+            --text-secondary: #4b3b5e;
+            --text-muted: #7b6b8c;
 
             --sidebar-width: 280px;
-            --header-height: 90px;
-        }
-
-        /* Tema Escuro */
-        .dark {
-            --primary-light: #2e2a5e;
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-
-            --bg-body: #111827;
-            --bg-card: #1f2937;
-            --bg-header: #1f2937;
-            --bg-header-alpha: rgba(31, 41, 55, 0.8);
-            --bg-sidebar: #1f2937;
-            --border-color: #374151;
-            --text-primary: #f9fafb;
-            --text-secondary: #d1d5db;
-            --text-muted: #9ca3af;
-            --text-light: #6b7280;
-            --hover-bg: #374151;
-            --input-bg: #374151;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
-            --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+            --header-height: 110px; /* Aumentado para destacar */
         }
 
         body {
@@ -77,7 +45,6 @@
             background: var(--bg-body);
             color: var(--text-primary);
             overflow-x: hidden;
-            transition: background-color 0.3s, color 0.3s, border-color 0.3s;
         }
 
         #wrapper {
@@ -96,7 +63,7 @@
             top: 0;
             height: 100vh;
             z-index: 1000;
-            box-shadow: 10px 0 40px -15px rgba(0, 0, 0, 0.1);
+            box-shadow: 10px 0 40px -15px rgba(0, 0, 0, 0.3);
         }
 
         #sidebar.collapsed {
@@ -108,8 +75,7 @@
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            background: linear-gradient(to bottom, var(--bg-sidebar) 90%, var(--border-color));
-            border-bottom: none;
+            border-bottom: 1px solid rgba(255, 201, 148, 0.2);
         }
 
         .sidebar-search-wrapper {
@@ -122,9 +88,8 @@
             left: 1rem;
             top: 50%;
             transform: translateY(-50%);
-            color: var(--text-muted);
+            color: var(--color-peach);
             font-size: 0.85rem;
-            transition: all 0.2s;
             pointer-events: none;
         }
 
@@ -132,29 +97,29 @@
             width: 100%;
             height: 40px;
             padding-left: 2.5rem;
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 201, 148, 0.3);
             border-radius: 12px;
-            background: var(--input-bg);
+            background: rgba(255, 255, 255, 0.1);
             font-size: 0.85rem;
-            color: var(--text-primary);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            color: #fff;
+            transition: all 0.3s;
         }
 
         .sidebar-search-input:focus {
             outline: none;
-            border-color: var(--primary);
-            background: var(--bg-card);
-            box-shadow: 0 0 0 4px var(--primary-light);
+            border-color: var(--color-peach);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 0 4px rgba(255, 201, 148, 0.2);
         }
 
-        .sidebar-search-input:focus + i {
-            color: var(--primary);
+        .sidebar-search-input::placeholder {
+            color: rgba(255, 201, 148, 0.7);
         }
 
         .brand-icon {
             width: 40px;
             height: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--color-teal), var(--color-pink));
             border-radius: 12px;
             display: flex;
             align-items: center;
@@ -163,19 +128,13 @@
             font-size: 1.2rem;
         }
 
-        .brand-text {
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: var(--text-primary);
-        }
-
         .nav-section {
             padding: 1rem 1rem;
+            list-style: none;
         }
 
         .nav-item {
             margin-bottom: 0.25rem;
-            list-style: none;
         }
 
         .nav-link {
@@ -183,7 +142,7 @@
             align-items: center;
             padding: 0.75rem 1rem;
             border-radius: 12px;
-            color: var(--text-secondary);
+            color: var(--color-peach);
             font-weight: 500;
             transition: all 0.2s;
             text-decoration: none;
@@ -193,32 +152,31 @@
             width: 24px;
             font-size: 1.2rem;
             margin-right: 12px;
-            color: var(--text-light);
+            color: rgba(255, 201, 148, 0.7);
         }
 
         .nav-link:hover {
-            background: var(--hover-bg);
-            color: var(--primary);
+            background: rgba(255, 201, 148, 0.15);
+            color: #fff;
         }
 
         .nav-link:hover i {
-            color: var(--primary);
+            color: #fff;
         }
 
         .nav-item.active .nav-link {
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--color-teal);
+            color: #fff;
             font-weight: 600;
         }
 
         .nav-item.active .nav-link i {
-            color: var(--primary);
+            color: #fff;
         }
 
         .sidebar-footer {
             padding: 1.5rem;
-            background: linear-gradient(to top, var(--bg-sidebar) 90%, var(--border-color));
-            border-top: none;
+            border-top: 1px solid rgba(255, 201, 148, 0.2);
             margin-top: auto;
         }
 
@@ -231,8 +189,8 @@
         .user-avatar {
             width: 40px;
             height: 40px;
-            background: var(--primary-light);
-            color: var(--primary);
+            background: var(--color-teal);
+            color: white;
             border-radius: 40px;
             display: flex;
             align-items: center;
@@ -247,15 +205,15 @@
         .user-name {
             font-weight: 600;
             font-size: 0.9rem;
-            color: var(--text-primary);
+            color: #fff;
         }
 
         .user-role {
             font-size: 0.75rem;
-            color: var(--text-muted);
+            color: var(--color-peach);
         }
 
-        /* Main content */
+        /* MAIN CONTENT */
         #content {
             flex: 1;
             display: flex;
@@ -263,142 +221,214 @@
             background: var(--bg-body);
         }
 
+        /* ===== HEADER CRIATIVO ===== */
         .main-header {
             height: var(--header-height);
-            background: var(--bg-header-alpha);
-            border-bottom: none;
-            padding: 0 2rem;
+            background: linear-gradient(145deg, #2b818c 0%, #ed2860 40%, #ffc994 100%);
+            position: relative;
+            overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 999;
-            box-shadow: 0 10px 40px -15px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            padding: 0 2rem;
+            box-shadow: 0 15px 30px -10px rgba(33, 28, 51, 0.3);
+            border-bottom: 4px solid #990069;
+            z-index: 10;
+        }
+
+        /* Elementos decorativos no header */
+        .main-header::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .main-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: -50px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,201,148,0.2) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .header-brand-icon {
+            width: 55px;
+            height: 55px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2);
+        }
+
+        .header-title-wrapper {
+            line-height: 1.2;
         }
 
         .header-title {
             font-size: 2.2rem;
             font-weight: 800;
-            letter-spacing: -0.04em;
-            background: linear-gradient(135deg, var(--primary) 0%, #8b5cf6 50%, var(--secondary) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0;
-            position: relative;
-            display: inline-block;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 2px 10px rgba(79, 70, 229, 0.1));
+            letter-spacing: -0.02em;
+            color: white;
+            margin: 0;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        .header-title:hover {
-            transform: translateY(-1px);
-            filter: drop-shadow(0 4px 15px rgba(79, 70, 229, 0.25));
-        }
-
-        .header-title::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            border-radius: 4px;
-            transition: width 0.3s ease;
-        }
-
-        .header-title:hover::after {
-            width: 100%;
+        .header-subtitle {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+            margin: 0;
+            letter-spacing: 0.5px;
         }
 
         .header-actions {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
+            position: relative;
+            z-index: 2;
         }
 
         .icon-btn {
-            width: 42px;
-            height: 42px;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 42px;
-            background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
             transition: all 0.2s;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 15px -5px rgba(0,0,0,0.2);
         }
 
         .icon-btn:hover {
-            background: var(--hover-bg);
-            color: var(--primary);
-            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -5px rgba(0,0,0,0.3);
+            border-color: white;
         }
 
         .notification-badge {
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 8px;
-            height: 8px;
-            background: var(--danger);
+            width: 10px;
+            height: 10px;
+            background: #ffc994;
             border-radius: 50%;
-            border: 2px solid var(--bg-header);
+            border: 2px solid rgba(255,255,255,0.5);
         }
 
         .user-dropdown-toggle {
             display: flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.25rem 0.5rem 0.25rem 0.25rem;
+            padding: 0.3rem 0.3rem 0.3rem 0.8rem;
             border-radius: 40px;
-            border: 1px solid var(--border-color);
-            background: transparent;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.3);
             transition: all 0.2s;
-            color: var(--text-primary);
+            color: white;
+            box-shadow: 0 8px 15px -5px rgba(0,0,0,0.2);
         }
 
         .user-dropdown-toggle:hover {
-            background: var(--hover-bg);
-            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.35);
+            border-color: white;
+            transform: translateY(-2px);
         }
 
-        .dropdown-menu {
+        .user-dropdown-toggle .user-avatar-small {
+            width: 36px;
+            height: 36px;
+            background: white;
+            color: #2b818c;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Botões de autenticação no header para guest */
+        .auth-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-header {
+            padding: 0.6rem 1.8rem;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.2s;
             border: none;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            padding: 0.5rem;
-            min-width: 220px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
+            font-size: 0.95rem;
+            box-shadow: 0 8px 15px -5px rgba(0,0,0,0.2);
         }
 
-        .dropdown-item {
-            padding: 0.6rem 1rem;
-            border-radius: 12px;
-            font-weight: 500;
-            color: var(--text-secondary);
+        .btn-header-login {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(8px);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
-        .dropdown-item i {
-            width: 20px;
-            margin-right: 0.5rem;
-            color: var(--text-muted);
+        .btn-header-login:hover {
+            background: rgba(255,255,255,0.35);
+            transform: translateY(-2px);
         }
 
-        .dropdown-item:hover {
-            background: var(--hover-bg);
-            color: var(--primary);
+        .btn-header-register {
+            background: #ffc994;
+            color: #211c33;
+            border: 1px solid rgba(255,255,255,0.3);
         }
 
+        .btn-header-register:hover {
+            background: #ffb96b;
+            transform: translateY(-2px);
+        }
+
+        /* Page hero area (breadcrumb e título da página) */
         .page-hero {
-            padding: 2rem 2rem 0;
-            background: linear-gradient(to bottom, var(--bg-header-alpha), transparent);
+            padding: 1.5rem 2rem 0;
+            background: transparent;
         }
 
         .breadcrumb {
@@ -414,9 +444,8 @@
         }
 
         .breadcrumb-item.active {
-            color: var(--primary);
+            color: var(--color-teal);
             font-weight: 600;
-            font-size: 0.8rem;
         }
 
         .content-body {
@@ -432,20 +461,20 @@
             font-size: 0.8rem;
         }
 
-        /* Cards */
+        /* Cards, tabelas, etc (mantidos iguais) */
         .card-modern {
             background: var(--bg-card);
             border-radius: 24px;
             border: 1px solid var(--border-color);
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 6px -1px rgba(33, 28, 51, 0.1);
             transition: all 0.2s;
         }
 
         .card-modern:hover {
-            box-shadow: var(--shadow-lg);
+            box-shadow: 0 20px 25px -5px rgba(33, 28, 51, 0.2);
+            border-color: var(--color-teal);
         }
 
-        /* Buttons */
         .btn-modern {
             padding: 0.6rem 1.5rem;
             border-radius: 40px;
@@ -462,28 +491,35 @@
         .btn-primary-modern {
             background: var(--primary);
             color: #fff;
-            box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(43, 129, 140, 0.3);
         }
 
         .btn-primary-modern:hover {
             background: var(--primary-dark);
             transform: translateY(-1px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(43, 129, 140, 0.4);
+        }
+
+        .btn-secondary-modern {
+            background: var(--secondary);
+            color: #fff;
+        }
+
+        .btn-secondary-modern:hover {
+            background: var(--secondary-dark);
         }
 
         .btn-outline-modern {
             background: transparent;
-            border: 1px solid var(--border-color);
-            color: var(--text-secondary);
-        }
-
-        .btn-outline-modern:hover {
-            background: var(--hover-bg);
-            border-color: var(--primary);
+            border: 1px solid var(--primary);
             color: var(--primary);
         }
 
-        /* Table */
+        .btn-outline-modern:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
         .table-modern {
             width: 100%;
             border-collapse: separate;
@@ -504,7 +540,7 @@
         .table-modern tbody tr {
             background: var(--bg-card);
             border-radius: 20px;
-            box-shadow: var(--shadow);
+            box-shadow: 0 4px 6px -1px rgba(33, 28, 51, 0.1);
         }
 
         .table-modern tbody td {
@@ -524,7 +560,6 @@
             border-bottom-right-radius: 20px;
         }
 
-        /* Badges */
         .badge-tag {
             font-size: 0.7rem;
             font-weight: 600;
@@ -532,17 +567,14 @@
             border-radius: 6px;
             margin-right: 0.25rem;
             display: inline-block;
-            background: var(--input-bg);
-            color: var(--text-secondary);
         }
 
-        /* Overlay */
         .overlay {
             display: none;
             position: fixed;
             width: 100vw;
             height: 100vh;
-            background: rgba(0,0,0,0.3);
+            background: rgba(33, 28, 51, 0.5);
             backdrop-filter: blur(4px);
             z-index: 999;
             opacity: 0;
@@ -552,11 +584,6 @@
         .overlay.active {
             display: block;
             opacity: 1;
-        }
-
-        /* Dark mode toggle button */
-        .theme-toggle {
-            cursor: pointer;
         }
 
         @media (max-width: 991.98px) {
@@ -576,15 +603,10 @@
             .header-title {
                 font-size: 1.6rem;
             }
-            .header-title::after {
-                height: 2px;
-                bottom: -2px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header-title {
-                font-size: 1.2rem;
+            .header-brand-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 1.4rem;
             }
         }
     </style>
@@ -616,30 +638,30 @@
                     </a>
                 </li>
             </ul>
-
         </nav>
     @endauth
 
     <div id="content">
+        <!-- HEADER CRIATIVO -->
         <header class="main-header">
-            <div class="d-flex align-items-center flex-grow-1">
+            <div class="header-content">
+                <div class="header-brand">
+                    <div class="header-brand-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <div class="header-title-wrapper">
+                        <h1 class="header-title">Task Manager</h1>
+                        <p class="header-subtitle">Organize com estilo</p>
+                    </div>
+                </div>
                 @auth
-                    <button type="button" id="sidebarCollapse" class="icon-btn me-3 d-lg-none">
+                    <button type="button" id="sidebarCollapse" class="icon-btn d-lg-none">
                         <i class="fas fa-bars"></i>
                     </button>
                 @endauth
-
-                <div class="header-title-container">
-                    <h1 class="header-title">Task Manager System</h1>
-                </div>
             </div>
 
             <div class="header-actions">
-                <!-- Botão de alternar tema -->
-                <button class="icon-btn theme-toggle" id="themeToggle">
-                    <i class="fas fa-moon"></i>
-                </button>
-
                 @auth
                     <button class="icon-btn position-relative">
                         <i class="far fa-bell"></i>
@@ -651,18 +673,19 @@
                 @endauth
 
                 @guest
-                    <a href="{{ route('login') }}" class="btn-modern btn-outline-modern">Entrar</a>
-                    @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn-modern btn-primary-modern">Cadastrar</a>
-                    @endif
+                    <div class="auth-buttons">
+                        <a href="{{ route('login') }}" class="btn-header btn-header-login">Entrar</a>
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}" class="btn-header btn-header-register">Cadastrar</a>
+                        @endif
+                    </div>
                 @else
                     <div class="dropdown">
                         <button class="user-dropdown-toggle btn" type="button" data-bs-toggle="dropdown">
-                            <div class="user-avatar" style="width: 32px; height: 32px; font-size: 0.8rem;">
+                            <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
+                            <div class="user-avatar-small">
                                 {{ strtoupper(substr(Auth::user()->name, 0, 1)) }}
                             </div>
-                            <span class="d-none d-sm-inline">{{ Auth::user()->name }}</span>
-                            <i class="fas fa-chevron-down text-muted small"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li><h6 class="dropdown-header">Minha Conta</h6></li>
@@ -692,7 +715,7 @@
                                 <li class="breadcrumb-item active" aria-current="page">@yield('header_title', 'Visão Geral')</li>
                             </ol>
                         </nav>
-                        <h4 class="fw-bold mb-0">@yield('header_title', 'Dashboard')</h4>
+                        <h4 class="fw-bold mb-0" style="color: #211c33;">@yield('header_title', 'Dashboard')</h4>
                     </div>
                     <div>
                         @yield('header_actions')
@@ -709,9 +732,9 @@
             <div class="d-flex justify-content-between align-items-center">
                 <span>&copy; {{ date('Y') }} Rattes SA. Todos os direitos reservados.</span>
                 <span>
-                        <a href="#" class="text-muted text-decoration-none me-3">Termos</a>
-                        <a href="#" class="text-muted text-decoration-none">Privacidade</a>
-                    </span>
+                    <a href="#" class="text-muted text-decoration-none me-3">Termos</a>
+                    <a href="#" class="text-muted text-decoration-none">Privacidade</a>
+                </span>
             </div>
         </footer>
     </div>
@@ -723,43 +746,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
 
 <script>
-    // Dark mode toggle
-    (function() {
-        const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement;
-        const icon = themeToggle?.querySelector('i');
-
-        // Verificar preferência salva
-        const savedTheme = localStorage.getItem('theme');
-        if (savedTheme === 'dark') {
-            htmlElement.classList.add('dark');
-            if (icon) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            }
-        }
-
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                if (htmlElement.classList.contains('dark')) {
-                    htmlElement.classList.remove('dark');
-                    localStorage.setItem('theme', 'light');
-                    if (icon) {
-                        icon.classList.remove('fa-sun');
-                        icon.classList.add('fa-moon');
-                    }
-                } else {
-                    htmlElement.classList.add('dark');
-                    localStorage.setItem('theme', 'dark');
-                    if (icon) {
-                        icon.classList.remove('fa-moon');
-                        icon.classList.add('fa-sun');
-                    }
-                }
-            });
-        }
-    })();
-
     document.addEventListener('DOMContentLoaded', function() {
         const sidebar = document.getElementById('sidebar');
         const overlay = document.querySelector('.overlay');
@@ -783,7 +769,6 @@
             });
         }
 
-        // Sidebar Menu Filter
         const sidebarSearch = document.getElementById('sidebarSearch');
         if (sidebarSearch) {
             sidebarSearch.addEventListener('input', function() {

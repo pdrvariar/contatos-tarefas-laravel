@@ -9,13 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4f46e5;
-            --primary-dark: #4338ca;
-            --gray-50: #f9fafb;
+            --color-dark-purple: #211c33;
+            --color-teal: #2b818c;
+            --color-peach: #ffc994;
+            --color-pink: #ed2860;
+            --color-magenta: #990069;
         }
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #f9fafb 0%, #f3f4f6 100%);
+            background: linear-gradient(145deg, #fefaf5 0%, #fff3e6 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -30,7 +32,7 @@
             border-radius: 2rem;
             background: rgba(255,255,255,0.9);
             backdrop-filter: blur(10px);
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            box-shadow: 0 25px 50px -12px rgba(33,28,51,0.3);
         }
         .btn-welcome {
             padding: 0.75rem 2rem;
@@ -39,35 +41,38 @@
             transition: all 0.2s;
         }
         .btn-primary-welcome {
-            background: var(--primary);
+            background: var(--color-teal);
             color: white;
             border: none;
         }
         .btn-primary-welcome:hover {
-            background: var(--primary-dark);
+            background: #1e6a73;
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(43,129,140,0.4);
         }
         .btn-outline-welcome {
-            border: 2px solid var(--primary);
-            color: var(--primary);
+            border: 2px solid var(--color-teal);
+            color: var(--color-teal);
             background: transparent;
         }
         .btn-outline-welcome:hover {
-            background: var(--primary);
+            background: var(--color-teal);
             color: white;
         }
         .brand-icon-large {
             width: 80px;
             height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(135deg, var(--color-teal), var(--color-pink));
             border-radius: 24px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-size: 2rem;
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(237,40,96,0.3);
+        }
+        h1 {
+            color: var(--color-dark-purple);
         }
     </style>
 </head>

@@ -5,10 +5,10 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <div class="text-center mb-4">
-                    <div class="brand-icon mx-auto mb-3" style="width: 70px; height: 70px; font-size: 1.8rem;">
+                    <div class="brand-icon mx-auto mb-3" style="width: 70px; height: 70px; font-size: 1.8rem; background: linear-gradient(135deg, #2b818c, #ed2860);">
                         <i class="fas fa-rocket"></i>
                     </div>
-                    <h3 class="fw-bold">Bem-vindo de volta!</h3>
+                    <h3 class="fw-bold" style="color: #211c33;">Bem-vindo de volta!</h3>
                     <p class="text-muted">Acesse sua conta para gerenciar seus contatos e tarefas.</p>
                 </div>
                 <div class="card-modern p-4 p-md-5">
@@ -18,8 +18,8 @@
                         <div class="mb-4">
                             <label for="email" class="form-label fw-semibold small">E-mail</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-envelope text-muted"></i></span>
-                                <input id="email" type="email" class="form-control bg-light border-start-0 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus placeholder="seu@email.com">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0;"><i class="fas fa-envelope" style="color: #2b818c;"></i></span>
+                                <input id="email" type="email" class="form-control bg-light border-start-0 @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autofocus placeholder="seu@email.com" style="border-color: #ffe0c0;">
                             </div>
                             @error('email')
                             <span class="text-danger small mt-1">{{ $message }}</span>
@@ -30,12 +30,12 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <label for="password" class="form-label fw-semibold small">Senha</label>
                                 @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" class="small text-decoration-none">Esqueceu a senha?</a>
+                                    <a href="{{ route('password.request') }}" class="small text-decoration-none" style="color: #2b818c;">Esqueceu a senha?</a>
                                 @endif
                             </div>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0"><i class="fas fa-lock text-muted"></i></span>
-                                <input id="password" type="password" class="form-control bg-light border-start-0 @error('password') is-invalid @enderror" name="password" required placeholder="••••••••">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0;"><i class="fas fa-lock" style="color: #2b818c;"></i></span>
+                                <input id="password" type="password" class="form-control bg-light border-start-0 @error('password') is-invalid @enderror" name="password" required placeholder="••••••••" style="border-color: #ffe0c0;">
                             </div>
                             @error('password')
                             <span class="text-danger small mt-1">{{ $message }}</span>
@@ -44,7 +44,7 @@
 
                         <div class="mb-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }} style="border-color: #2b818c;">
                                 <label class="form-check-label text-muted" for="remember">Lembrar de mim</label>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
 
                         <div class="text-center mt-4">
                             <span class="text-muted">Ainda não tem conta?</span>
-                            <a href="{{ route('register') }}" class="text-decoration-none fw-bold">Cadastre-se</a>
+                            <a href="{{ route('register') }}" class="text-decoration-none fw-bold" style="color: #ed2860;">Cadastre-se</a>
                         </div>
                     </form>
                 </div>

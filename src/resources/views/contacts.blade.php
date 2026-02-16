@@ -61,38 +61,68 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+    <!-- Modal de Contato (refinado) -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 500px;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 shadow-lg" style="border-radius: 28px;">
-                <div class="modal-header border-0 pb-0 pt-4 px-4">
-                    <h5 class="modal-title fw-bold" id="contactModalLabel">Novo Contato</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="modal-content border-0" style="border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px -15px rgba(33, 28, 51, 0.4);">
+                <!-- Cabeçalho com gradiente e ícone -->
+                <div class="modal-header position-relative border-0" style="background: linear-gradient(145deg, #211c33, #ed2860); padding: 2rem 2rem 1.5rem;">
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3);">
+                            <i class="fas fa-address-book fa-2x" style="color: #ffc994;"></i>
+                        </div>
+                        <div>
+                            <h5 class="modal-title fw-bold" id="contactModalLabel" style="color: white; font-size: 1.8rem; line-height: 1.2;">Novo Contato</h5>
+                            <p class="small" style="color: rgba(255,255,255,0.7); margin: 0;">Preencha os dados abaixo</p>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></button>
+                    <!-- Elemento decorativo -->
+                    <div style="position: absolute; bottom: -20px; right: -20px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,201,148,0.2) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
                 </div>
-                <div class="modal-body p-4">
+
+                <div class="modal-body p-4" style="background: #fff;">
                     <form id="contactForm">
                         <input type="hidden" id="contact_id">
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold small">Nome</label>
-                            <input type="text" class="form-control rounded-3" id="name" required>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Nome completo</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-user" style="color: #2b818c;"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0" id="name" required placeholder="Ex.: João Silva" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold small">E-mail</label>
-                            <input type="email" class="form-control rounded-3" id="email">
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">E-mail</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-envelope" style="color: #2b818c;"></i></span>
+                                <input type="email" class="form-control bg-light border-start-0" id="email" placeholder="Ex.: joao@email.com" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold small">Telefone</label>
-                            <input type="text" class="form-control rounded-3" id="phone" required>
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Telefone</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-phone-alt" style="color: #2b818c;"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0" id="phone" required placeholder="(11) 99999-9999" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                            </div>
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label fw-semibold small">Tags</label>
-                            <input type="text" class="form-control rounded-3" id="tags" placeholder="Digite e pressione Enter...">
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Tags</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-tags" style="color: #2b818c;"></i></span>
+                                <input type="text" class="form-control bg-light border-start-0" id="tags" placeholder="Digite e pressione Enter..." style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                            </div>
+                            <small class="text-muted">Use tags para categorizar, ex.: "cliente", "fornecedor"</small>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer border-0 pt-0 pb-4 px-4">
-                    <button type="button" class="btn btn-outline-modern btn-modern" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary-modern btn-modern" onclick="saveContact()">Salvar</button>
+
+                <div class="modal-footer border-0 p-4 pt-0" style="background: #fff;">
+                    <button type="button" class="btn btn-outline-modern btn-modern px-4" data-bs-dismiss="modal" style="border-radius: 40px;">Cancelar</button>
+                    <button type="button" class="btn btn-primary-modern btn-modern px-5" onclick="saveContact()" style="border-radius: 40px; box-shadow: 0 8px 15px -5px rgba(43,129,140,0.4);">Salvar</button>
                 </div>
             </div>
         </div>
@@ -125,6 +155,41 @@
         .btn-edit:hover { background: #bae6fd; }
         .btn-delete { background: #fee2e2; color: #b91c1c; }
         .btn-delete:hover { background: #fecaca; }
+
+        /* Melhorias nos modais */
+        .modal-content {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .modal.fade .modal-dialog {
+            transform: scale(0.95);
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+        .modal.show .modal-dialog {
+            transform: scale(1);
+        }
+
+        /* Inputs com foco mais elegante */
+        .form-control:focus, .form-select:focus {
+            border-color: #2b818c !important;
+            box-shadow: 0 0 0 0.25rem rgba(43, 129, 140, 0.15) !important;
+        }
+
+        /* Ajuste no input-group-text para combinar */
+        .input-group-text {
+            background: #fefaf5;
+            border: 1px solid #ffe0c0;
+            transition: all 0.2s;
+        }
+        .input-group:focus-within .input-group-text {
+            border-color: #2b818c;
+            color: #2b818c;
+        }
+
+        /* Badges de tags no modal (se aparecerem) */
+        .tagify__tag {
+            border-radius: 30px !important;
+            font-size: 0.85rem !important;
+        }
     </style>
 @endsection
 
@@ -135,17 +200,15 @@
         let phoneMask, tagifyInput, tagifySearch;
 
         const colorMap = {
-            blue: { bg: '#deebff', text: '#0747a6' },
-            green: { bg: '#e3fcef', text: '#006644' },
-            yellow: { bg: '#fffae6', text: '#826a00' },
-            red: { bg: '#ffebe6', text: '#bf2600' },
-            purple: { bg: '#eae6ff', text: '#403294' },
-            teal: { bg: '#e6fcff', text: '#008da6' },
-            gray: { bg: '#f4f5f7', text: '#42526e' }
+            teal: { bg: '#2b818c', text: '#ffffff' },
+            peach: { bg: '#ffc994', text: '#211c33' },
+            pink: { bg: '#ed2860', text: '#ffffff' },
+            magenta: { bg: '#990069', text: '#ffffff' },
+            purple: { bg: '#211c33', text: '#ffc994' }
         };
 
         function getTagStyle(color) {
-            const c = colorMap[color] || colorMap.gray;
+            const c = colorMap[color] || colorMap.peach;
             return `background: ${c.bg}; color: ${c.text};`;
         }
 
@@ -163,9 +226,9 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const existing = whitelist.find(t => t.value.toLowerCase() === tagData.value.toLowerCase());
-                const color = existing?.color || Object.keys(colorMap)[Math.abs(tagData.value.split('').reduce((a,b)=>a+b.charCodeAt(0),0)) % 7];
-                tagData.style = getTagStyle(color);
+                const colors = ['teal', 'peach', 'pink', 'magenta', 'purple'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                tagData.style = getTagStyle(randomColor);
             };
 
             const config = {

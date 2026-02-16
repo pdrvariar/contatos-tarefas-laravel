@@ -8,6 +8,11 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # Define que todos os comandos 'run' devem ser executados dentro da pasta 'src'
+    defaults:
+      run:
+        working-directory: ./src
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -39,10 +44,9 @@ jobs:
       with:
         SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         ARGS: "-rlgoDzvc -i --delete"
-        SOURCE: "/"
-        # Caminho onde o Laravel ficará (fora da public_html para segurança)
-        # Substitua 'domains/seudominio.com/laravel_core' pelo seu caminho real
-        TARGET: "/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core"
+        SOURCE: "src/"  # Envia o conteúdo da pasta src
+        # Caminho ajustado para o seu domínio academy2u.com
+        TARGET: "/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core" 
         REMOTE_HOST: ${{ secrets.HOSTINGER_IP }}
         REMOTE_PORT: ${{ secrets.HOSTINGER_PORT }}
         REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
@@ -56,7 +60,7 @@ jobs:
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.HOSTINGER_PORT }}
         script: |
-          # Define variáveis de caminho
+          # Variáveis ajustadas para academy2u.com
           PROJECT_ROOT="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core"
           PUBLIC_HTML="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/public_html"
           
@@ -70,11 +74,9 @@ jobs:
           php artisan storage:link
           
           # Mover conteúdo da pasta public para public_html
-          # O rsync sincroniza a pasta public do laravel com a public_html
           rsync -av $PROJECT_ROOT/public/ $PUBLIC_HTML/
           
-          # Ajustar o index.php na public_html para apontar para o caminho correto
-          # Isso substitui os caminhos padrão pelos caminhos da pasta laravel_core
+          # Ajustar o index.php na public_html
           sed -i "s|__DIR__.'/../storage|'$PROJECT_ROOT'/storage|g" $PUBLIC_HTML/index.php
           sed -i "s|__DIR__.'/../vendor|'$PROJECT_ROOT'/vendor|g" $PUBLIC_HTML/index.php
           sed -i "s|__DIR__.'/../bootstrap|'$PROJECT_ROOT'/bootstrap|g" $PUBLIC_HTML/index.php

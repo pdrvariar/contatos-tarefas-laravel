@@ -7,7 +7,7 @@ use App\Models\Contact;
 use App\Http\Requests\Api\v1\StoreContactRequest;
 use App\Http\Requests\Api\v1\UpdateContactRequest;
 use App\Http\Resources\Api\v1\ContactResource;
-use App\Services\ContactService;
+use App\Interfaces\ContactServiceInterface;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ class ContactController extends Controller
 
     protected $contactService;
 
-    public function __construct(ContactService $contactService)
+    public function __construct(ContactServiceInterface $contactService)
     {
         $this->contactService = $contactService;
     }

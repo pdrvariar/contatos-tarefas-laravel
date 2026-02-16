@@ -8,6 +8,10 @@ use App\Models\Contact;
 use App\Policies\ContactPolicy;
 use App\Models\Task;
 use App\Policies\TaskPolicy;
+use App\Interfaces\ContactServiceInterface;
+use App\Services\ContactService;
+use App\Interfaces\TaskServiceInterface;
+use App\Services\TaskService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,7 +20,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(ContactServiceInterface::class, ContactService::class);
+        $this->app->bind(TaskServiceInterface::class, TaskService::class);
     }
 
     /**

@@ -7,7 +7,7 @@ use App\Models\Task;
 use App\Http\Requests\Api\v1\StoreTaskRequest;
 use App\Http\Requests\Api\v1\UpdateTaskRequest;
 use App\Http\Resources\Api\v1\TaskResource;
-use App\Services\TaskService;
+use App\Interfaces\TaskServiceInterface;
 use App\Traits\ApiResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ class TaskController extends Controller
 
     protected $taskService;
 
-    public function __construct(TaskService $taskService)
+    public function __construct(TaskServiceInterface $taskService)
     {
         $this->taskService = $taskService;
     }

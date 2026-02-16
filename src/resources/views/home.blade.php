@@ -6,7 +6,7 @@
         <div class="row g-4">
             <div class="col-md-6">
                 <div class="card-modern p-4 text-center">
-                    <div class="rounded-3 mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; background: #e0e7ff; color: var(--primary); box-shadow: 0 8px 15px rgba(99, 102, 241, 0.2);">
+                    <div class="rounded-3 mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; background: #e6d2db; color: var(--primary); box-shadow: 0 8px 15px rgba(191, 105, 153, 0.2);">
                         <i class="fas fa-address-book fa-2x"></i>
                     </div>
                     <h5 class="fw-bold" style="color: var(--text-primary);">Contatos</h5>
@@ -16,7 +16,7 @@
             </div>
             <div class="col-md-6">
                 <div class="card-modern p-4 text-center">
-                    <div class="rounded-3 mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; background: #ffe4e6; color: var(--accent); box-shadow: 0 8px 15px rgba(244, 63, 94, 0.2);">
+                    <div class="rounded-3 mx-auto mb-3 d-flex align-items-center justify-content-center" style="width: 64px; height: 64px; background: #faeaf2; color: var(--accent); box-shadow: 0 8px 15px rgba(242, 147, 126, 0.2);">
                         <i class="fas fa-tasks fa-2x"></i>
                     </div>
                     <h5 class="fw-bold" style="color: var(--text-primary);">Tarefas</h5>

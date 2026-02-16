@@ -16,26 +16,23 @@
 
     <style>
         :root {
-            /* Cores Sóbrias e Profissionais - Atualizadas para Maior Destaque */
-            --primary: #6366f1;          /* Indigo vibrante */
-            --primary-dark: #4f46e5;
-            --secondary: #64748b;
-            --secondary-dark: #475569;
-            --accent: #f43f5e;           /* Rose para ações de destaque */
-
-            --bg-body: #eef2ff;          /* Indigo muito claro - fundo destacado */
+            /* Nova paleta */
+            --primary: #BF6999;
+            --primary-dark: #642F73;
+            --secondary: #F2B29B;
+            --accent: #F2937E;
+            --bg-body: #faf0f5;        /* fundo suave */
             --bg-card: #ffffff;
-            --bg-sidebar: #0f172a;       /* Slate Escuro */
-            --bg-header: #1e293b;        /* Topo Diferenciado - Slate Médio/Escuro */
-            --border-color: #e2e8f0;
-
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --text-header: #f8fafc;      /* Texto claro para o topo diferenciado */
+            --bg-sidebar: #2D1240;      /* roxo profundo */
+            --bg-header: #642F73;        /* roxo médio */
+            --border-color: #e6d2db;     /* borda rosada */
+            --text-primary: #2D1240;
+            --text-secondary: #642F73;
+            --text-muted: #BF6999;
+            --text-header: #ffffff;
 
             --sidebar-width: 280px;
-            --header-height: 80px;       /* Reduzido para um visual mais limpo */
+            --header-height: 80px;
         }
 
         body {
@@ -108,7 +105,7 @@
             outline: none;
             border-color: var(--primary);
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 0 0 4px rgba(191, 105, 153, 0.2);
         }
 
         .sidebar-search-input::placeholder {
@@ -142,7 +139,7 @@
             align-items: center;
             gap: 1rem;
             padding: 0.75rem 1rem;
-            color: #94a3b8;
+            color: #F2B29B;
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.2s;
@@ -164,7 +161,7 @@
         .nav-item.active .nav-link {
             background: var(--primary);
             color: #fff;
-            box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(191, 105, 153, 0.2);
         }
 
         .nav-item.active .nav-link i {
@@ -218,7 +215,7 @@
             background: var(--bg-body);
         }
 
-        /* ===== HEADER DIFERENCIADO E IMPACTANTE ===== */
+        /* HEADER */
         .main-header {
             height: var(--header-height);
             background: var(--bg-header);
@@ -236,7 +233,7 @@
         .main-header:hover {
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(2px);
-            background: #111827; /* Mais escuro no hover */
+            background: #4a235a; /* mais escuro */
         }
 
         .header-content {
@@ -263,14 +260,14 @@
             justify-content: center;
             font-size: 1.4rem;
             color: white;
-            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            box-shadow: 0 0 20px rgba(191, 105, 153, 0.5);
             transition: all 0.4s ease;
         }
 
         .main-header:hover .header-brand-icon {
             transform: rotate(15deg) scale(1.1);
             background: var(--accent);
-            box-shadow: 0 0 25px rgba(244, 63, 94, 0.6);
+            box-shadow: 0 0 25px rgba(242, 147, 126, 0.6);
         }
 
         .header-title-wrapper {
@@ -295,7 +292,7 @@
         .header-subtitle {
             font-size: 0.75rem;
             font-weight: 600;
-            color: #94a3b8;
+            color: #F2B29B;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -318,7 +315,7 @@
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #cbd5e1;
+            color: #F2B29B;
             transition: all 0.2s;
             font-size: 1.1rem;
         }
@@ -371,7 +368,7 @@
             justify-content: center;
             font-weight: 700;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 10px rgba(191, 105, 153, 0.3);
         }
 
         /* Botões de autenticação no header para guest */
@@ -396,7 +393,7 @@
         }
 
         .btn-header-login:hover {
-            background: #f1f5f9;
+            background: #f1e0e8;
         }
 
         .btn-header-register {
@@ -408,7 +405,7 @@
             background: var(--primary-dark);
         }
 
-        /* Page hero area (breadcrumb e título da página) */
+        /* Page hero area */
         .page-hero {
             padding: 1.5rem 2rem 0;
             background: transparent;
@@ -427,7 +424,7 @@
         }
 
         .breadcrumb-item.active {
-            color: var(--color-teal);
+            color: var(--primary);
             font-weight: 600;
         }
 
@@ -488,7 +485,7 @@
         }
 
         .btn-outline-modern:hover {
-            background: #f1f5f9;
+            background: #f1e0e8;
             color: var(--primary);
             border-color: var(--primary);
             transform: translateY(-1px);
@@ -501,7 +498,7 @@
         }
 
         .table-modern th {
-            background: #f8fafc;
+            background: #faeaf2;
             padding: 1rem;
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -524,13 +521,13 @@
         }
 
         .table-modern tr:hover td {
-            background: #f8fafc;
+            background: #faeaf2;
         }
 
         .avatar-circle {
             width: 36px;
             height: 36px;
-            background: #e2e8f0;
+            background: #e6d2db;
             color: var(--text-primary);
             border-radius: 8px;
             display: flex;
@@ -545,7 +542,7 @@
             border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 600;
-            background: #f1f5f9;
+            background: #f1e0e8;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
         }
@@ -555,7 +552,7 @@
             position: fixed;
             width: 100vw;
             height: 100vh;
-            background: rgba(33, 28, 51, 0.5);
+            background: rgba(45, 18, 64, 0.5);
             backdrop-filter: blur(4px);
             z-index: 999;
             opacity: 0;
@@ -696,7 +693,7 @@
                                 <li class="breadcrumb-item active" aria-current="page">@yield('header_title', 'Visão Geral')</li>
                             </ol>
                         </nav>
-                        <h4 class="fw-bold mb-0" style="color: #211c33;">@yield('header_title', 'Dashboard')</h4>
+                        <h4 class="fw-bold mb-0" style="color: #2D1240;">@yield('header_title', 'Dashboard')</h4>
                     </div>
                     <div>
                         @yield('header_actions')

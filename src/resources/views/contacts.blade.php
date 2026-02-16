@@ -61,11 +61,10 @@
         </div>
     </div>
 
-    <!-- Modal de Contato (refinado) -->
+    <!-- Modal de Contato -->
     <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 500px;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
-                <!-- Cabeçalho sóbrio -->
                 <div class="modal-header border-0 bg-light p-4">
                     <div class="d-flex align-items-center gap-3">
                         <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--primary); color: white;">
@@ -123,15 +122,13 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
     </div>
 
     <style>
         .avatar-circle {
             width: 40px;
             height: 40px;
-            background: #e0e7ff;
+            background: #e6d2db;
             color: var(--primary);
             border-radius: 8px;
             display: flex;
@@ -155,7 +152,7 @@
         .btn-edit:hover {
             color: var(--primary);
             border-color: var(--primary);
-            background: #f1f5f9;
+            background: #f1e0e8;
         }
         .btn-delete:hover {
             color: #ef4444;
@@ -163,13 +160,11 @@
             background: #fef2f2;
         }
 
-        /* Inputs com foco mais elegante */
         .form-control:focus, .form-select:focus {
             border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1) !important;
+            box-shadow: 0 0 0 0.25rem rgba(191, 105, 153, 0.1) !important;
         }
 
-        /* Ajuste no input-group-text para combinar */
         .input-group-text {
             background: #f8fafc;
             border: 1px solid var(--border-color);
@@ -180,7 +175,6 @@
             color: var(--primary);
         }
 
-        /* Badges de tags no modal (se aparecerem) */
         .tagify__tag {
             border-radius: 30px !important;
             font-size: 0.85rem !important;
@@ -194,16 +188,17 @@
         let currentPage = 1;
         let phoneMask, tagifyInput, tagifySearch;
 
+        // Cores das tags baseadas na nova paleta
         const colorMap = {
-            blue: { bg: '#dbeafe', text: '#1e40af' },
-            slate: { bg: '#f1f5f9', text: '#334155' },
-            emerald: { bg: '#d1fae5', text: '#065f46' },
-            amber: { bg: '#fef3c7', text: '#92400e' },
-            rose: { bg: '#ffe4e6', text: '#9f1239' }
+            primary: { bg: '#BF6999', text: '#ffffff' },
+            dark: { bg: '#642F73', text: '#ffffff' },
+            darker: { bg: '#2D1240', text: '#F2B29B' },
+            peach: { bg: '#F2B29B', text: '#2D1240' },
+            coral: { bg: '#F2937E', text: '#2D1240' }
         };
 
         function getTagStyle(color) {
-            const c = colorMap[color] || colorMap.slate;
+            const c = colorMap[color] || colorMap.peach;
             return `background: ${c.bg}; color: ${c.text}; border: 1px solid rgba(0,0,0,0.05);`;
         }
 
@@ -221,7 +216,7 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const colors = ['blue', 'slate', 'emerald', 'amber', 'rose'];
+                const colors = ['primary', 'dark', 'darker', 'peach', 'coral'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 tagData.style = getTagStyle(randomColor);
             };

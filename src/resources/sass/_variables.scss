@@ -1,7 +1,28 @@
 // Body
-$body-bg: #f8fafc;
+$body-bg: #faf0f5;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Inter', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+
+// Bootstrap overrides – novas cores
+$primary: #BF6999;
+$secondary: #F2B29B;
+$success: #2D1240;
+$info: #642F73;
+$warning: #F2937E;
+$danger: #dc3545;
+$light: #f8f9fa;
+$dark: #2D1240;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "success": $success,
+    "info": $info,
+    "warning": $warning,
+    "danger": $danger,
+    "light": $light,
+    "dark": $dark
+);

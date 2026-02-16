@@ -9,20 +9,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #64748b;
-            --secondary-dark: #475569;
-            --accent: #f43f5e;
-            --bg-body: #eef2ff;          /* Fundo destacado */
+            --primary: #BF6999;
+            --primary-dark: #642F73;
+            --secondary: #F2B29B;
+            --accent: #F2937E;
+            --bg-body: #faf0f5;
             --bg-card: #ffffff;
-            --bg-sidebar: #0f172a;
-            --border-color: #e2e8f0;
-            --text-primary: #0f172a;
-            --text-secondary: #334155;
-            --text-muted: #64748b;
-            --sidebar-width: 280px;
-            --header-height: 80px;
+            --bg-sidebar: #2D1240;
+            --bg-header: #642F73;
+            --border-color: #e6d2db;
+            --text-primary: #2D1240;
+            --text-secondary: #642F73;
+            --text-muted: #BF6999;
+            --text-header: #ffffff;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -57,7 +56,7 @@
         .btn-primary-welcome:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(191, 105, 153, 0.3);
         }
         .btn-outline-welcome {
             border: 1px solid var(--border-color);
@@ -65,7 +64,7 @@
             background: #ffffff;
         }
         .btn-outline-welcome:hover {
-            background: #f1f5f9;
+            background: #f1e0e8;
             border-color: var(--primary);
             color: var(--primary);
         }
@@ -79,13 +78,13 @@
             justify-content: center;
             color: white;
             font-size: 1.8rem;
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
+            box-shadow: 0 10px 25px rgba(191, 105, 153, 0.4);
             transition: all 0.3s ease;
         }
         .brand-icon-large:hover {
             transform: rotate(15deg) scale(1.1);
             background: var(--accent);
-            box-shadow: 0 10px 25px rgba(244, 63, 94, 0.4);
+            box-shadow: 0 10px 25px rgba(242, 147, 126, 0.4);
         }
         h1 {
             color: var(--text-primary);

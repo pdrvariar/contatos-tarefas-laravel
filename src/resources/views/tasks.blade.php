@@ -51,12 +51,10 @@
         <div class="mt-4" id="tasks-pagination-nav"></div>
     </div>
 
-    <!-- Modal -->
-    <!-- Modal de Tarefa (refinado) -->
+    <!-- Modal de Tarefa -->
     <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 550px;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
-                <!-- Cabeçalho sóbrio -->
                 <div class="modal-header border-0 bg-light p-4">
                     <div class="d-flex align-items-center gap-3">
                         <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--primary); color: white;">
@@ -120,8 +118,6 @@
                 </div>
             </div>
         </div>
-            </div>
-        </div>
     </div>
 
     <style>
@@ -148,10 +144,10 @@
             border-radius: 6px;
             letter-spacing: 0.05em;
         }
-        .status-Pendente { background: #fef3c7; color: #92400e; }
-        .status-Em-Andamento { background: #dbeafe; color: #1e40af; }
-        .status-Concluída { background: #d1fae5; color: #065f46; }
-        .status-Cancelada { background: #f1f5f9; color: #475569; }
+        .status-Pendente { background: #F2B29B; color: #2D1240; }
+        .status-Em-Andamento { background: #BF6999; color: #ffffff; }
+        .status-Concluída { background: #642F73; color: #F2B29B; }
+        .status-Cancelada { background: #e6d2db; color: #2D1240; }
 
         .btn-icon {
             width: 32px;
@@ -165,16 +161,14 @@
             background: white;
             color: var(--text-secondary);
         }
-        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #f1f5f9; }
+        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #f1e0e8; }
         .btn-delete:hover { color: #ef4444; border-color: #ef4444; background: #fef2f2; }
 
-        /* Inputs com foco mais elegante */
         .form-control:focus, .form-select:focus {
             border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1) !important;
+            box-shadow: 0 0 0 0.25rem rgba(191, 105, 153, 0.1) !important;
         }
 
-        /* Ajuste no input-group-text para combinar */
         .input-group-text {
             background: #f8fafc;
             border: 1px solid var(--border-color);
@@ -185,7 +179,6 @@
             color: var(--primary);
         }
 
-        /* Badges de tags no modal (se aparecerem) */
         .tagify__tag {
             border-radius: 30px !important;
             font-size: 0.85rem !important;
@@ -198,12 +191,13 @@
         let currentTasksPage = 1;
         let tagifyInput, tagifySearch;
 
+        // Cores das tags baseadas na nova paleta
         const colorMap = {
-            teal: { bg: '#2b818c', text: '#ffffff' },
-            peach: { bg: '#ffc994', text: '#211c33' },
-            pink: { bg: '#ed2860', text: '#ffffff' },
-            magenta: { bg: '#990069', text: '#ffffff' },
-            purple: { bg: '#211c33', text: '#ffc994' }
+            primary: { bg: '#BF6999', text: '#ffffff' },
+            dark: { bg: '#642F73', text: '#ffffff' },
+            darker: { bg: '#2D1240', text: '#F2B29B' },
+            peach: { bg: '#F2B29B', text: '#2D1240' },
+            coral: { bg: '#F2937E', text: '#2D1240' }
         };
 
         function getTagStyle(color) {
@@ -224,7 +218,7 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const colors = ['teal', 'peach', 'pink', 'magenta', 'purple'];
+                const colors = ['primary', 'dark', 'darker', 'peach', 'coral'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 tagData.style = getTagStyle(randomColor);
             };

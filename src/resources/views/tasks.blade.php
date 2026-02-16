@@ -55,48 +55,46 @@
     <!-- Modal de Tarefa (refinado) -->
     <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 550px;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0" style="border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px -15px rgba(33, 28, 51, 0.4);">
-                <!-- Cabeçalho com gradiente e ícone -->
-                <div class="modal-header position-relative border-0" style="background: linear-gradient(145deg, #2b818c, #ed2860); padding: 2rem 2rem 1.5rem;">
+            <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+                <!-- Cabeçalho sóbrio -->
+                <div class="modal-header border-0 bg-light p-4">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3);">
-                            <i class="fas fa-tasks fa-2x" style="color: #ffc994;"></i>
+                        <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--primary); color: white;">
+                            <i class="fas fa-tasks fa-lg"></i>
                         </div>
                         <div>
-                            <h5 class="modal-title fw-bold" id="taskModalLabel" style="color: white; font-size: 1.8rem; line-height: 1.2;">Nova Tarefa</h5>
-                            <p class="small" style="color: rgba(255,255,255,0.7); margin: 0;">Organize seu dia</p>
+                            <h5 class="modal-title fw-bold" id="taskModalLabel" style="color: var(--text-primary); font-size: 1.25rem;">Nova Tarefa</h5>
+                            <p class="small text-muted mb-0">Organize seu dia</p>
                         </div>
                     </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></button>
-                    <!-- Elemento decorativo -->
-                    <div style="position: absolute; bottom: -20px; right: -20px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,201,148,0.2) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body p-4" style="background: #fff;">
+                <div class="modal-body p-4">
                     <form id="taskForm">
                         <input type="hidden" id="task_id">
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Descrição</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">Descrição</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-align-left" style="color: #2b818c;"></i></span>
-                                <textarea class="form-control bg-light border-start-0" id="description" rows="3" required placeholder="Ex.: Reunião com cliente" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;"></textarea>
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-align-left text-muted"></i></span>
+                                <textarea class="form-control bg-white border-start-0" id="description" rows="3" required placeholder="Ex.: Reunião com cliente" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;"></textarea>
                             </div>
                         </div>
 
-                        <div class="row mb-4">
+                        <div class="row mb-3">
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Prazo</label>
+                                <label class="form-label fw-semibold small text-uppercase text-muted">Prazo</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="far fa-calendar" style="color: #2b818c;"></i></span>
-                                    <input type="datetime-local" class="form-control bg-light border-start-0" id="due_date" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                    <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="far fa-calendar text-muted"></i></span>
+                                    <input type="datetime-local" class="form-control bg-white border-start-0" id="due_date" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Status</label>
+                                <label class="form-label fw-semibold small text-uppercase text-muted">Status</label>
                                 <div class="input-group">
-                                    <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-tag" style="color: #2b818c;"></i></span>
-                                    <select class="form-select bg-light border-start-0" id="status" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                    <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-tag text-muted"></i></span>
+                                    <select class="form-select bg-white border-start-0" id="status" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                                         <option value="Pendente">Pendente</option>
                                         <option value="Em Andamento">Em Andamento</option>
                                         <option value="Concluída">Concluída</option>
@@ -106,78 +104,85 @@
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Tags</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">Tags</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-tags" style="color: #2b818c;"></i></span>
-                                <input type="text" class="form-control bg-light border-start-0" id="tags" placeholder="Digite e pressione Enter..." style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-tags text-muted"></i></span>
+                                <input type="text" class="form-control bg-white border-start-0" id="tags" placeholder="Digite e pressione Enter..." style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
-                            <small class="text-muted">Ex.: "trabalho", "urgente"</small>
                         </div>
                     </form>
                 </div>
 
-                <div class="modal-footer border-0 p-4 pt-0" style="background: #fff;">
-                    <button type="button" class="btn btn-outline-modern btn-modern px-4" data-bs-dismiss="modal" style="border-radius: 40px;">Cancelar</button>
-                    <button type="button" class="btn btn-primary-modern btn-modern px-5" onclick="saveTask()" style="border-radius: 40px; box-shadow: 0 8px 15px -5px rgba(43,129,140,0.4);">Salvar</button>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-outline-modern btn-modern" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-modern btn-modern" onclick="saveTask()">Salvar</button>
                 </div>
+            </div>
+        </div>
             </div>
         </div>
     </div>
 
     <style>
         .task-card {
-            border: none;
-            border-radius: 24px;
-            background: #fff;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.25rem;
             transition: all 0.2s;
             height: 100%;
-            border: 1px solid var(--gray-200);
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
         }
         .task-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
         }
         .status-badge {
-            font-size: 0.6rem;
-            font-weight: 700;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
+            font-size: 0.7rem;
             text-transform: uppercase;
+            font-weight: 700;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            letter-spacing: 0.05em;
         }
         .status-Pendente { background: #fef3c7; color: #92400e; }
-        .status-Em-Andamento { background: #e0e7ff; color: #3730a3; }
-        .status-Concluída { background: #dcfce7; color: #166534; }
-        .status-Cancelada { background: #fee2e2; color: #991b1b; }
+        .status-Em-Andamento { background: #dbeafe; color: #1e40af; }
+        .status-Concluída { background: #d1fae5; color: #065f46; }
+        .status-Cancelada { background: #f1f5f9; color: #475569; }
 
-        /* Melhorias nos modais */
-        .modal-content {
-            transition: transform 0.2s ease, opacity 0.2s ease;
+        .btn-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-secondary);
         }
-        .modal.fade .modal-dialog {
-            transform: scale(0.95);
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-        .modal.show .modal-dialog {
-            transform: scale(1);
-        }
+        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #f1f5f9; }
+        .btn-delete:hover { color: #ef4444; border-color: #ef4444; background: #fef2f2; }
 
         /* Inputs com foco mais elegante */
         .form-control:focus, .form-select:focus {
-            border-color: #2b818c !important;
-            box-shadow: 0 0 0 0.25rem rgba(43, 129, 140, 0.15) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1) !important;
         }
 
         /* Ajuste no input-group-text para combinar */
         .input-group-text {
-            background: #fefaf5;
-            border: 1px solid #ffe0c0;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
             transition: all 0.2s;
         }
         .input-group:focus-within .input-group-text {
-            border-color: #2b818c;
-            color: #2b818c;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* Badges de tags no modal (se aparecerem) */

@@ -64,66 +64,65 @@
     <!-- Modal de Contato (refinado) -->
     <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 500px;">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0" style="border-radius: 32px; overflow: hidden; box-shadow: 0 30px 60px -15px rgba(33, 28, 51, 0.4);">
-                <!-- Cabeçalho com gradiente e ícone -->
-                <div class="modal-header position-relative border-0" style="background: linear-gradient(145deg, #211c33, #ed2860); padding: 2rem 2rem 1.5rem;">
+            <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
+                <!-- Cabeçalho sóbrio -->
+                <div class="modal-header border-0 bg-light p-4">
                     <div class="d-flex align-items-center gap-3">
-                        <div class="rounded-circle d-flex align-items-center justify-content-center" style="width: 60px; height: 60px; background: rgba(255,255,255,0.2); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.3);">
-                            <i class="fas fa-address-book fa-2x" style="color: #ffc994;"></i>
+                        <div class="rounded-3 d-flex align-items-center justify-content-center" style="width: 48px; height: 48px; background: var(--primary); color: white;">
+                            <i class="fas fa-address-book fa-lg"></i>
                         </div>
                         <div>
-                            <h5 class="modal-title fw-bold" id="contactModalLabel" style="color: white; font-size: 1.8rem; line-height: 1.2;">Novo Contato</h5>
-                            <p class="small" style="color: rgba(255,255,255,0.7); margin: 0;">Preencha os dados abaixo</p>
+                            <h5 class="modal-title fw-bold" id="contactModalLabel" style="color: var(--text-primary); font-size: 1.25rem;">Novo Contato</h5>
+                            <p class="small text-muted mb-0">Preencha os dados abaixo</p>
                         </div>
                     </div>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));"></button>
-                    <!-- Elemento decorativo -->
-                    <div style="position: absolute; bottom: -20px; right: -20px; width: 150px; height: 150px; background: radial-gradient(circle, rgba(255,201,148,0.2) 0%, transparent 70%); border-radius: 50%; pointer-events: none;"></div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
 
-                <div class="modal-body p-4" style="background: #fff;">
+                <div class="modal-body p-4">
                     <form id="contactForm">
                         <input type="hidden" id="contact_id">
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Nome completo</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">Nome completo</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-user" style="color: #2b818c;"></i></span>
-                                <input type="text" class="form-control bg-light border-start-0" id="name" required placeholder="Ex.: João Silva" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-user text-muted"></i></span>
+                                <input type="text" class="form-control bg-white border-start-0" id="name" required placeholder="Ex.: João Silva" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">E-mail</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">E-mail</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-envelope" style="color: #2b818c;"></i></span>
-                                <input type="email" class="form-control bg-light border-start-0" id="email" placeholder="Ex.: joao@email.com" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-envelope text-muted"></i></span>
+                                <input type="email" class="form-control bg-white border-start-0" id="email" placeholder="Ex.: joao@email.com" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Telefone</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">Telefone</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-phone-alt" style="color: #2b818c;"></i></span>
-                                <input type="text" class="form-control bg-light border-start-0" id="phone" required placeholder="(11) 99999-9999" style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-phone-alt text-muted"></i></span>
+                                <input type="text" class="form-control bg-white border-start-0" id="phone" required placeholder="(11) 99999-9999" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
                         </div>
 
-                        <div class="mb-4">
-                            <label class="form-label fw-semibold small text-uppercase tracking-wide" style="color: #211c33;">Tags</label>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold small text-uppercase text-muted">Tags</label>
                             <div class="input-group">
-                                <span class="input-group-text bg-light border-end-0" style="border-color: #ffe0c0; border-radius: 16px 0 0 16px;"><i class="fas fa-tags" style="color: #2b818c;"></i></span>
-                                <input type="text" class="form-control bg-light border-start-0" id="tags" placeholder="Digite e pressione Enter..." style="border-color: #ffe0c0; border-radius: 0 16px 16px 0; padding: 0.8rem 1rem;">
+                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-tags text-muted"></i></span>
+                                <input type="text" class="form-control bg-white border-start-0" id="tags" placeholder="Digite e pressione Enter..." style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
-                            <small class="text-muted">Use tags para categorizar, ex.: "cliente", "fornecedor"</small>
                         </div>
                     </form>
                 </div>
 
-                <div class="modal-footer border-0 p-4 pt-0" style="background: #fff;">
-                    <button type="button" class="btn btn-outline-modern btn-modern px-4" data-bs-dismiss="modal" style="border-radius: 40px;">Cancelar</button>
-                    <button type="button" class="btn btn-primary-modern btn-modern px-5" onclick="saveContact()" style="border-radius: 40px; box-shadow: 0 8px 15px -5px rgba(43,129,140,0.4);">Salvar</button>
+                <div class="modal-footer border-0 p-4 pt-0">
+                    <button type="button" class="btn btn-outline-modern btn-modern" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary-modern btn-modern" onclick="saveContact()">Salvar</button>
                 </div>
+            </div>
+        </div>
             </div>
         </div>
     </div>
@@ -132,57 +131,53 @@
         .avatar-circle {
             width: 40px;
             height: 40px;
-            background: var(--primary-light);
+            background: #e0e7ff;
             color: var(--primary);
-            border-radius: 40px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
         }
         .btn-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: none;
-            transition: 0.2s;
-            margin: 0 2px;
+            transition: all 0.2s;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-secondary);
+            margin-left: 0.25rem;
         }
-        .btn-edit { background: #e0f2fe; color: #0369a1; }
-        .btn-edit:hover { background: #bae6fd; }
-        .btn-delete { background: #fee2e2; color: #b91c1c; }
-        .btn-delete:hover { background: #fecaca; }
-
-        /* Melhorias nos modais */
-        .modal-content {
-            transition: transform 0.2s ease, opacity 0.2s ease;
+        .btn-edit:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: #f1f5f9;
         }
-        .modal.fade .modal-dialog {
-            transform: scale(0.95);
-            transition: transform 0.2s ease, opacity 0.2s ease;
-        }
-        .modal.show .modal-dialog {
-            transform: scale(1);
+        .btn-delete:hover {
+            color: #ef4444;
+            border-color: #ef4444;
+            background: #fef2f2;
         }
 
         /* Inputs com foco mais elegante */
         .form-control:focus, .form-select:focus {
-            border-color: #2b818c !important;
-            box-shadow: 0 0 0 0.25rem rgba(43, 129, 140, 0.15) !important;
+            border-color: var(--primary) !important;
+            box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.1) !important;
         }
 
         /* Ajuste no input-group-text para combinar */
         .input-group-text {
-            background: #fefaf5;
-            border: 1px solid #ffe0c0;
+            background: #f8fafc;
+            border: 1px solid var(--border-color);
             transition: all 0.2s;
         }
         .input-group:focus-within .input-group-text {
-            border-color: #2b818c;
-            color: #2b818c;
+            border-color: var(--primary);
+            color: var(--primary);
         }
 
         /* Badges de tags no modal (se aparecerem) */
@@ -200,16 +195,16 @@
         let phoneMask, tagifyInput, tagifySearch;
 
         const colorMap = {
-            teal: { bg: '#2b818c', text: '#ffffff' },
-            peach: { bg: '#ffc994', text: '#211c33' },
-            pink: { bg: '#ed2860', text: '#ffffff' },
-            magenta: { bg: '#990069', text: '#ffffff' },
-            purple: { bg: '#211c33', text: '#ffc994' }
+            blue: { bg: '#dbeafe', text: '#1e40af' },
+            slate: { bg: '#f1f5f9', text: '#334155' },
+            emerald: { bg: '#d1fae5', text: '#065f46' },
+            amber: { bg: '#fef3c7', text: '#92400e' },
+            rose: { bg: '#ffe4e6', text: '#9f1239' }
         };
 
         function getTagStyle(color) {
-            const c = colorMap[color] || colorMap.peach;
-            return `background: ${c.bg}; color: ${c.text};`;
+            const c = colorMap[color] || colorMap.slate;
+            return `background: ${c.bg}; color: ${c.text}; border: 1px solid rgba(0,0,0,0.05);`;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -226,7 +221,7 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const colors = ['teal', 'peach', 'pink', 'magenta', 'purple'];
+                const colors = ['blue', 'slate', 'emerald', 'amber', 'rose'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 tagData.style = getTagStyle(randomColor);
             };

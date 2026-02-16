@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Auth\Notifications\VerifyEmail;
+use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Contact;
@@ -31,5 +33,13 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::policy(Contact::class, ContactPolicy::class);
         Gate::policy(Task::class, TaskPolicy::class);
+
+        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+            return (new MailMessage)
+                ->subject('Verifique seu endereço de e-mail')
+                ->line('Clique no botão abaixo para verificar seu endereço de e-mail.')
+                ->action('Verificar E-mail', $url)
+                ->line('Se você não criou uma conta, ignore este e-mail.');
+        });
     }
 }

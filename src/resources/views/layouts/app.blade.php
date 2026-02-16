@@ -366,9 +366,12 @@
             font-size: 0.9rem;
         }
 
-        .user-dropdown-toggle:hover {
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.1);
+        .user-dropdown-toggle:hover,
+        .user-dropdown-toggle:focus,
+        .user-dropdown-toggle:active {
+            background: rgba(255, 255, 255, 0.07) !important;
+            border-color: rgba(255, 255, 255, 0.1) !important;
+            color: #fff !important;
         }
 
         .user-dropdown-toggle .user-avatar-small {

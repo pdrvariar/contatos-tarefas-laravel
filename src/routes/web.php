@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 Auth::routes(['verify' => true]);
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     // Rotas principais que carregam as Views
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');

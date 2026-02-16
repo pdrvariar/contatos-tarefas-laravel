@@ -150,10 +150,10 @@
             border-radius: 6px;
             letter-spacing: 0.05em;
         }
-        .status-Pendente { background: #B0C4DE; color: #0B2B5E; }
-        .status-Em-Andamento { background: #1E4A7A; color: #ffffff; }
-        .status-Concluída { background: #0B2B5E; color: #E6F0FA; }
-        .status-Cancelada { background: #D4E3F0; color: #0B2B5E; }
+        .status-Pendente { background: #FFF0B3; color: #172B4D; }
+        .status-Em-Andamento { background: #DEEBFF; color: #0747A6; }
+        .status-Concluída { background: #E3FCEF; color: #006644; }
+        .status-Cancelada { background: #FFEBE6; color: #BF2600; }
 
         .btn-icon {
             width: 32px;

@@ -9,19 +9,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #BF6999;
-            --primary-dark: #642F73;
-            --secondary: #F2B29B;
-            --accent: #F2937E;
-            --bg-body: #faf0f5;
+            --primary: #1E4A7A;
+            --primary-dark: #0B2B5E;
+            --secondary: #4A90E2;
+            --accent: #2C3E50;
+            --bg-body: #F4F9FF;
             --bg-card: #ffffff;
-            --bg-sidebar: #2D1240;
-            --bg-header: #642F73;
-            --border-color: #e6d2db;
-            --text-primary: #2D1240;
-            --text-secondary: #642F73;
-            --text-muted: #BF6999;
-            --text-header: #ffffff;
+            --border-color: #D4E3F0;
+            --text-primary: #0B2B5E;
+            --text-secondary: #1E4A7A;
+            --text-muted: #4A90E2;
         }
         body {
             font-family: 'Inter', sans-serif;
@@ -56,7 +53,7 @@
         .btn-primary-welcome:hover {
             background: var(--primary-dark);
             transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(191, 105, 153, 0.3);
+            box-shadow: 0 10px 15px -3px rgba(30, 74, 122, 0.3);
         }
         .btn-outline-welcome {
             border: 1px solid var(--border-color);
@@ -64,7 +61,7 @@
             background: #ffffff;
         }
         .btn-outline-welcome:hover {
-            background: #f1e0e8;
+            background: #E6F0FA;
             border-color: var(--primary);
             color: var(--primary);
         }
@@ -78,13 +75,13 @@
             justify-content: center;
             color: white;
             font-size: 1.8rem;
-            box-shadow: 0 10px 25px rgba(191, 105, 153, 0.4);
+            box-shadow: 0 10px 25px rgba(30, 74, 122, 0.4);
             transition: all 0.3s ease;
         }
         .brand-icon-large:hover {
             transform: rotate(15deg) scale(1.1);
-            background: var(--accent);
-            box-shadow: 0 10px 25px rgba(242, 147, 126, 0.4);
+            background: var(--secondary);
+            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.4);
         }
         h1 {
             color: var(--text-primary);

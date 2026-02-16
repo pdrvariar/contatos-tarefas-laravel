@@ -144,10 +144,10 @@
             border-radius: 6px;
             letter-spacing: 0.05em;
         }
-        .status-Pendente { background: #F2B29B; color: #2D1240; }
-        .status-Em-Andamento { background: #BF6999; color: #ffffff; }
-        .status-Concluída { background: #642F73; color: #F2B29B; }
-        .status-Cancelada { background: #e6d2db; color: #2D1240; }
+        .status-Pendente { background: #B0C4DE; color: #0B2B5E; }
+        .status-Em-Andamento { background: #1E4A7A; color: #ffffff; }
+        .status-Concluída { background: #0B2B5E; color: #E6F0FA; }
+        .status-Cancelada { background: #D4E3F0; color: #0B2B5E; }
 
         .btn-icon {
             width: 32px;
@@ -161,12 +161,12 @@
             background: white;
             color: var(--text-secondary);
         }
-        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #f1e0e8; }
+        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #E6F0FA; }
         .btn-delete:hover { color: #ef4444; border-color: #ef4444; background: #fef2f2; }
 
         .form-control:focus, .form-select:focus {
             border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(191, 105, 153, 0.1) !important;
+            box-shadow: 0 0 0 0.25rem rgba(30, 74, 122, 0.1) !important;
         }
 
         .input-group-text {
@@ -191,17 +191,17 @@
         let currentTasksPage = 1;
         let tagifyInput, tagifySearch;
 
-        // Cores das tags baseadas na nova paleta
+        // Cores das tags baseadas na nova paleta azul
         const colorMap = {
-            primary: { bg: '#BF6999', text: '#ffffff' },
-            dark: { bg: '#642F73', text: '#ffffff' },
-            darker: { bg: '#2D1240', text: '#F2B29B' },
-            peach: { bg: '#F2B29B', text: '#2D1240' },
-            coral: { bg: '#F2937E', text: '#2D1240' }
+            primary: { bg: '#1E4A7A', text: '#ffffff' },
+            dark: { bg: '#0B2B5E', text: '#ffffff' },
+            light: { bg: '#4A90E2', text: '#ffffff' },
+            accent: { bg: '#2C3E50', text: '#E6F0FA' },
+            soft: { bg: '#B0C4DE', text: '#0B2B5E' }
         };
 
         function getTagStyle(color) {
-            const c = colorMap[color] || colorMap.peach;
+            const c = colorMap[color] || colorMap.soft;
             return `background: ${c.bg}; color: ${c.text};`;
         }
 
@@ -218,7 +218,7 @@
             } catch (e) {}
 
             const transformTag = (tagData) => {
-                const colors = ['primary', 'dark', 'darker', 'peach', 'coral'];
+                const colors = ['primary', 'dark', 'light', 'accent', 'soft'];
                 const randomColor = colors[Math.floor(Math.random() * colors.length)];
                 tagData.style = getTagStyle(randomColor);
             };

@@ -16,19 +16,19 @@
 
     <style>
         :root {
-            /* Nova paleta */
-            --primary: #BF6999;
-            --primary-dark: #642F73;
-            --secondary: #F2B29B;
-            --accent: #F2937E;
-            --bg-body: #faf0f5;        /* fundo suave */
+            /* Nova paleta azul */
+            --primary: #1E4A7A;          /* Azul médio */
+            --primary-dark: #0B2B5E;      /* Azul profundo */
+            --secondary: #4A90E2;         /* Azul claro */
+            --accent: #2C3E50;             /* Azul acinzentado */
+            --bg-body: #F4F9FF;            /* Fundo suave azulado */
             --bg-card: #ffffff;
-            --bg-sidebar: #2D1240;      /* roxo profundo */
-            --bg-header: #642F73;        /* roxo médio */
-            --border-color: #e6d2db;     /* borda rosada */
-            --text-primary: #2D1240;
-            --text-secondary: #642F73;
-            --text-muted: #BF6999;
+            --bg-sidebar: #0B2B5E;         /* Navy */
+            --bg-header: #0B2B5E;           /* Navy */
+            --border-color: #D4E3F0;        /* Azul bem claro */
+            --text-primary: #0B2B5E;
+            --text-secondary: #1E4A7A;
+            --text-muted: #4A90E2;
             --text-header: #ffffff;
 
             --sidebar-width: 280px;
@@ -103,9 +103,9 @@
 
         .sidebar-search-input:focus {
             outline: none;
-            border-color: var(--primary);
+            border-color: var(--secondary);
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 0 0 4px rgba(191, 105, 153, 0.2);
+            box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.2);
         }
 
         .sidebar-search-input::placeholder {
@@ -139,7 +139,7 @@
             align-items: center;
             gap: 1rem;
             padding: 0.75rem 1rem;
-            color: #F2B29B;
+            color: #B0C4DE;
             text-decoration: none;
             border-radius: 8px;
             transition: all 0.2s;
@@ -161,7 +161,7 @@
         .nav-item.active .nav-link {
             background: var(--primary);
             color: #fff;
-            box-shadow: 0 4px 6px -1px rgba(191, 105, 153, 0.2);
+            box-shadow: 0 4px 6px -1px rgba(30, 74, 122, 0.2);
         }
 
         .nav-item.active .nav-link i {
@@ -225,7 +225,7 @@
             justify-content: space-between;
             padding: 0 2rem;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            border-bottom: 3px solid var(--primary);
+            border-bottom: 3px solid var(--secondary);
             z-index: 10;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -233,7 +233,7 @@
         .main-header:hover {
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
             transform: translateY(2px);
-            background: #4a235a; /* mais escuro */
+            background: #0A1F3A; /* mais escuro */
         }
 
         .header-content {
@@ -260,14 +260,14 @@
             justify-content: center;
             font-size: 1.4rem;
             color: white;
-            box-shadow: 0 0 20px rgba(191, 105, 153, 0.5);
+            box-shadow: 0 0 20px rgba(30, 74, 122, 0.5);
             transition: all 0.4s ease;
         }
 
         .main-header:hover .header-brand-icon {
             transform: rotate(15deg) scale(1.1);
-            background: var(--accent);
-            box-shadow: 0 0 25px rgba(242, 147, 126, 0.6);
+            background: var(--secondary);
+            box-shadow: 0 0 25px rgba(74, 144, 226, 0.6);
         }
 
         .header-title-wrapper {
@@ -292,7 +292,7 @@
         .header-subtitle {
             font-size: 0.75rem;
             font-weight: 600;
-            color: #F2B29B;
+            color: #B0C4DE;
             margin: 0;
             text-transform: uppercase;
             letter-spacing: 0.1em;
@@ -315,7 +315,7 @@
             border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #F2B29B;
+            color: #B0C4DE;
             transition: all 0.2s;
             font-size: 1.1rem;
         }
@@ -323,7 +323,7 @@
         .icon-btn:hover {
             background: rgba(255, 255, 255, 0.1);
             color: #fff;
-            border-color: var(--primary);
+            border-color: var(--secondary);
             transform: translateY(-2px);
         }
 
@@ -354,7 +354,7 @@
 
         .user-dropdown-toggle:hover {
             background: rgba(255, 255, 255, 0.1);
-            border-color: var(--primary);
+            border-color: var(--secondary);
         }
 
         .user-dropdown-toggle .user-avatar-small {
@@ -368,7 +368,7 @@
             justify-content: center;
             font-weight: 700;
             font-size: 1rem;
-            box-shadow: 0 4px 10px rgba(191, 105, 153, 0.3);
+            box-shadow: 0 4px 10px rgba(30, 74, 122, 0.3);
         }
 
         /* Botões de autenticação no header para guest */
@@ -393,7 +393,7 @@
         }
 
         .btn-header-login:hover {
-            background: #f1e0e8;
+            background: #E6F0FA;
         }
 
         .btn-header-register {
@@ -485,7 +485,7 @@
         }
 
         .btn-outline-modern:hover {
-            background: #f1e0e8;
+            background: #E6F0FA;
             color: var(--primary);
             border-color: var(--primary);
             transform: translateY(-1px);
@@ -498,7 +498,7 @@
         }
 
         .table-modern th {
-            background: #faeaf2;
+            background: #E6F0FA;
             padding: 1rem;
             font-size: 0.75rem;
             text-transform: uppercase;
@@ -521,13 +521,13 @@
         }
 
         .table-modern tr:hover td {
-            background: #faeaf2;
+            background: #E6F0FA;
         }
 
         .avatar-circle {
             width: 36px;
             height: 36px;
-            background: #e6d2db;
+            background: #D4E3F0;
             color: var(--text-primary);
             border-radius: 8px;
             display: flex;
@@ -542,7 +542,7 @@
             border-radius: 6px;
             font-size: 0.75rem;
             font-weight: 600;
-            background: #f1e0e8;
+            background: #E6F0FA;
             color: var(--text-secondary);
             border: 1px solid var(--border-color);
         }
@@ -552,7 +552,7 @@
             position: fixed;
             width: 100vw;
             height: 100vh;
-            background: rgba(45, 18, 64, 0.5);
+            background: rgba(11, 43, 94, 0.5);
             backdrop-filter: blur(4px);
             z-index: 999;
             opacity: 0;
@@ -693,7 +693,7 @@
                                 <li class="breadcrumb-item active" aria-current="page">@yield('header_title', 'Visão Geral')</li>
                             </ol>
                         </nav>
-                        <h4 class="fw-bold mb-0" style="color: #2D1240;">@yield('header_title', 'Dashboard')</h4>
+                        <h4 class="fw-bold mb-0" style="color: #0B2B5E;">@yield('header_title', 'Dashboard')</h4>
                     </div>
                     <div>
                         @yield('header_actions')

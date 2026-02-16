@@ -1,20 +1,20 @@
 // Body
-$body-bg: #faf0f5;
+$body-bg: #F4F9FF;
 
 // Typography
 $font-family-sans-serif: 'Inter', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
-// Bootstrap overrides – novas cores
-$primary: #BF6999;
-$secondary: #F2B29B;
-$success: #2D1240;
-$info: #642F73;
-$warning: #F2937E;
+// Bootstrap overrides – nova paleta azul
+$primary: #1E4A7A;
+$secondary: #4A90E2;
+$success: #0B2B5E;
+$info: #2C3E50;
+$warning: #B0C4DE;
 $danger: #dc3545;
 $light: #f8f9fa;
-$dark: #2D1240;
+$dark: #0B2B5E;
 
 $theme-colors: (
     "primary": $primary,

@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5">
                 <div class="text-center mb-4">
-                    <div class="brand-icon mx-auto mb-3" style="width: 68px; height: 68px; font-size: 1.6rem; background: var(--primary); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(191, 105, 153, 0.3);">
+                    <div class="brand-icon mx-auto mb-3" style="width: 68px; height: 68px; font-size: 1.6rem; background: var(--primary); color: white; border-radius: 14px; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 20px rgba(30, 74, 122, 0.3);">
                         <i class="fas fa-envelope"></i>
                     </div>
                     <h3 class="fw-bold" style="color: var(--text-primary);">Verifique seu e-mail</h3>
@@ -14,7 +14,7 @@
 
                 <div class="card-modern p-4 p-md-5 text-center">
                     @if (session('resent'))
-                        <div class="alert alert-success" role="alert" style="background: #F2B29B; color: #2D1240; border: none;">
+                        <div class="alert alert-success" role="alert" style="background: #E6F0FA; color: #0B2B5E; border: none;">
                             Um novo link de verificação foi enviado.
                         </div>
                     @endif

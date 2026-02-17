@@ -273,6 +273,14 @@
                 </div>
             `;
             }).join('');
+
+            // Reinicializa todos os dropdowns na lista de tarefas para garantir que funcionem após renderização dinâmica
+            setTimeout(() => {
+                const dropdownElementList = list.querySelectorAll('[data-bs-toggle="dropdown"]');
+                dropdownElementList.forEach(dropdownToggleEl => {
+                    new bootstrap.Dropdown(dropdownToggleEl);
+                });
+            }, 0);
         }
 
         function renderTasksPagination(data) {

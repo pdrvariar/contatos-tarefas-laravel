@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\v1\ContactController;
 use App\Http\Controllers\Api\v1\TaskController;
 use App\Http\Controllers\Api\v1\BookController;
 use App\Http\Controllers\Api\v1\TagController;
+use App\Http\Controllers\Api\v1\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,12 @@ use App\Http\Controllers\Api\v1\TagController;
 */
 
 Route::prefix('v1')->as('api.')->group(function () {
+    // Auth
+    Route::post('login', [AuthController::class, 'login']);
+
     Route::middleware('auth:sanctum')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+
         // Contacts
         Route::apiResource('contacts', ContactController::class);
 

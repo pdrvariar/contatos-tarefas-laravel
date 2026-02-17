@@ -125,37 +125,108 @@
 @push('styles')
     <style>
         .task-card {
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            transition: all 0.2s;
-            background: var(--bg-card);
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem 1.25rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.02);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
-        .task-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            border-color: var(--primary);
-        }
-        .status-badge {
-            font-size: 0.75rem;
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .status-Pendente { background: #FFF0B3; color: #172B4D; }
-        .status-Em-Andamento { background: #DEEBFF; color: #0747A6; }
-        .status-Concluída { background: #E3FCEF; color: #006644; }
-        .status-Cancelada { background: #FFEBE6; color: #BF2600; }
 
-        .badge-tag {
+        .task-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 24px -8px rgba(30, 74, 122, 0.12);
+            border-color: rgba(30, 74, 122, 0.1);
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .status-badge {
             font-size: 0.7rem;
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-right: 4px;
-            font-weight: 500;
+            font-weight: 600;
+            padding: 0.25rem 1rem;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
             display: inline-block;
-            margin-top: 4px;
+        }
+
+        .status-Pendente {
+            background: #fff3d1;
+            color: #8e5c1a;
+        }
+        .status-Em-Andamento {
+            background: #dbeafe;
+            color: #1e4a7a;
+        }
+        .status-Concluída {
+            background: #dcfce7;
+            color: #166534;
+        }
+        .status-Cancelada {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .task-description {
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: #1e2b3c;
+            margin-bottom: 1rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .task-footer {
+            margin-top: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #f0f0f0;
+            padding-top: 1rem;
+            font-size: 0.8rem;
+            color: #6b7b8f;
+        }
+
+        .task-due-date {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .task-due-date i {
+            font-size: 0.75rem;
+            color: #9aaec2;
+        }
+
+        .task-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            margin-bottom: 1rem;
+        }
+
+        .btn-task-action {
+            background: transparent;
+            border: none;
+            color: #8b9bb5;
+            padding: 0 4px;
+            transition: color 0.2s;
+        }
+
+        .btn-task-action:hover {
+            color: #1e4a7a;
         }
     </style>
 @endpush
@@ -178,6 +249,12 @@
             const colors = ['primary', 'dark', 'light', 'accent', 'soft', 'danger'];
             const c = colorMap[color] || colorMap[colors[Math.floor(Math.random() * colors.length)]];
             return `background: ${c.bg}; color: ${c.text}; border: 1px solid ${c.border};`;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -243,43 +320,40 @@
             noTasks.classList.add('d-none');
             list.innerHTML = tasks.map(t => {
                 const statusClass = t.status.replace(' ', '-');
-                const date = t.due_date ? new Date(t.due_date).toLocaleString('pt-BR').substring(0, 16) : 'Sem prazo';
+                const date = t.due_date ? new Date(t.due_date).toLocaleString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }) : 'Sem prazo';
                 const tags = t.tags?.map(tag => `<span class="badge-tag" style="${getTagStyle(tag.color)}">${tag.name}</span>`).join('') || '';
-                const completeBtn = t.status !== 'Concluída' ? `<li><a class="dropdown-item" href="#" onclick="completeTask(${t.id})"><i class="fas fa-check text-success me-2"></i>Concluir</a></li>` : '';
+                const completeBtn = t.status !== 'Concluída' ? `<li><a class="dropdown-item py-2" href="#" onclick="completeTask(${t.id})"><i class="fas fa-check text-success me-2"></i>Concluir</a></li>` : '';
 
                 return `
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="card h-100 task-card p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <span class="status-badge status-${statusClass}">${t.status}</span>
-                            <div class="dropdown">
-                                <button class="btn btn-link text-muted p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </button>
-                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
-                                    <li><a class="dropdown-item" href="#" onclick="editTask(${t.id})"><i class="fas fa-edit text-warning me-2"></i>Editar</a></li>
-                                    ${completeBtn}
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item text-danger" href="#" onclick="deleteTask(${t.id})"><i class="fas fa-trash me-2"></i>Excluir</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <h6 class="fw-bold mb-2" style="color: var(--text-primary); min-height: 3rem;">${t.description}</h6>
-                        <div class="mb-3">${tags}</div>
-                        <div class="pt-3 border-top mt-auto d-flex align-items-center text-muted small">
-                            <i class="far fa-clock me-2"></i>${date}
-                        </div>
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="task-card">
+                <div class="task-header">
+                    <span class="status-badge status-${statusClass}">${t.status}</span>
+                    <div class="dropdown">
+                        <button class="btn-task-action" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-ellipsis-v"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm" style="border-radius: 12px; padding: 0.5rem;">
+                            <li><a class="dropdown-item py-2" href="#" onclick="editTask(${t.id})"><i class="fas fa-edit text-warning me-2"></i>Editar</a></li>
+                            ${completeBtn}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item py-2 text-danger" href="#" onclick="deleteTask(${t.id})"><i class="fas fa-trash me-2"></i>Excluir</a></li>
+                        </ul>
                     </div>
                 </div>
-            `;
+                <p class="task-description">${escapeHtml(t.description)}</p>
+                <div class="task-tags">${tags}</div>
+                <div class="task-footer">
+                    <span class="task-due-date"><i class="far fa-clock"></i> ${date}</span>
+                </div>
+            </div>
+        </div>
+        `;
             }).join('');
 
-            // Reinicializa todos os dropdowns na lista de tarefas para garantir que funcionem após renderização dinâmica
+            // Reinicializa dropdowns
             setTimeout(() => {
-                const dropdownElementList = list.querySelectorAll('[data-bs-toggle="dropdown"]');
-                dropdownElementList.forEach(dropdownToggleEl => {
-                    new bootstrap.Dropdown(dropdownToggleEl);
-                });
+                document.querySelectorAll('[data-bs-toggle="dropdown"]').forEach(el => new bootstrap.Dropdown(el));
             }, 0);
         }
 

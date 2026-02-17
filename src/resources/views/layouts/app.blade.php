@@ -642,6 +642,12 @@
                         <span>Tarefas</span>
                     </a>
                 </li>
+                <li class="nav-item {{ Request::routeIs('books.index') ? 'active' : '' }}">
+                    <a href="{{ route('books.index') }}" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        <span>Livros</span>
+                    </a>
+                </li>
             </ul>
         </nav>
     @endauth

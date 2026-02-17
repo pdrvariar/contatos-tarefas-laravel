@@ -59,6 +59,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Task::class);
     }
 
+    public function books()
+    {
+        return $this->hasMany(Book::class);
+    }
+
     // Relacionamento: usuário tem muitas tags
     public function tags()
     {

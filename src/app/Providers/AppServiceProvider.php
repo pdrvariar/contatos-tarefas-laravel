@@ -10,10 +10,14 @@ use App\Models\Contact;
 use App\Policies\ContactPolicy;
 use App\Models\Task;
 use App\Policies\TaskPolicy;
+use App\Models\Book;
+use App\Policies\BookPolicy;
 use App\Interfaces\ContactServiceInterface;
 use App\Services\ContactService;
 use App\Interfaces\TaskServiceInterface;
 use App\Services\TaskService;
+use App\Interfaces\BookServiceInterface;
+use App\Services\BookService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(ContactServiceInterface::class, ContactService::class);
         $this->app->bind(TaskServiceInterface::class, TaskService::class);
+        $this->app->bind(BookServiceInterface::class, BookService::class);
     }
 
     /**
@@ -33,6 +38,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::policy(Contact::class, ContactPolicy::class);
         Gate::policy(Task::class, TaskPolicy::class);
+        Gate::policy(Book::class, BookPolicy::class);
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)

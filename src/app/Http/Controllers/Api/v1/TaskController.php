@@ -24,6 +24,7 @@ class TaskController extends Controller
         $this->taskService = $taskService;
     }
 
+    //FUNCAO NOVA
     public function index(Request $request)
     {
         $filters = $request->only(['search', 'tags', 'status']);

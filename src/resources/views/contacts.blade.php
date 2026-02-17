@@ -37,7 +37,7 @@
         </div>
 
         <!-- Tabela de contatos -->
-        <div class="card border-0 shadow-sm overflow-hidden">
+        <div class="card border-0 shadow-sm">
             <div class="table-responsive">
                 <table class="table table-hover align-middle mb-0" id="contacts-table">
                     <thead class="bg-light">
@@ -372,16 +372,10 @@
                 });
 
                 if (res.ok) {
-                    // Fecha o modal e remove backdrop manualmente se necessário
+                    // Fecha o modal ANTES de mostrar o alerta para evitar travamento
                     const modalEl = document.getElementById('contactModal');
                     const modal = bootstrap.Modal.getInstance(modalEl);
                     if (modal) modal.hide();
-
-                    // Força a remoção de possíveis backdrops residuais e restaura o scroll
-                    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                    document.body.classList.remove('modal-open');
-                    document.body.style.overflow = '';
-                    document.body.style.paddingRight = '';
 
                     loadContacts(currentPage);
                     initTagify(); // Atualiza whitelist

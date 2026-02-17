@@ -120,7 +120,9 @@
             </div>
         </div>
     </div>
+@endsection
 
+@push('styles')
     <style>
         .task-card {
             border: 1px solid var(--border-color);

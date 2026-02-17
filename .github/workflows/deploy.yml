@@ -28,15 +28,16 @@ jobs:
       run: |
         echo "${{ secrets.LARAVEL_ENV }}" > .env
 
-    # Usando FTP para transferir arquivos (Mais estável na Hostinger que Rsync/SSH repetido)
+    # Upload via FTP usando o usuário específico do FTP
     - name: Upload files via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.5
       with:
         server: ${{ secrets.HOSTINGER_IP }}
-        username: ${{ secrets.HOSTINGER_USER }}
+        username: ${{ secrets.FTP_USER }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./src/
-        # Caminho remoto para a pasta laravel_core
+        # Ajuste crítico: Se o usuário FTP cai na public_html, precisamos subir um nível ou ajustar.
+        # Vou tentar o caminho absoluto, que geralmente funciona se o usuário tiver permissão.
         server-dir: /domains/academy2u.com/laravel_core/
         exclude: |
           **/.git*
@@ -45,7 +46,7 @@ jobs:
           **/tests/**
           **/storage/logs/**
 
-    # SSH apenas para rodar comandos finais (Rápido, menor chance de timeout)
+    # Comandos via SSH usando o usuário SSH
     - name: Execute Remote Commands
       uses: appleboy/ssh-action@master
       with:
@@ -66,8 +67,6 @@ jobs:
           $PHP_BIN artisan route:clear
           $PHP_BIN artisan view:clear
           
-          # Sincroniza a pasta public com a public_html
           rsync -av $PROJECT_ROOT/public/ $PUBLIC_HTML/
           
-          # Ajusta o index.php
           sed -i "s|__DIR__.'/../|__DIR__.'/../laravel_core/|g" $PUBLIC_HTML/index.php

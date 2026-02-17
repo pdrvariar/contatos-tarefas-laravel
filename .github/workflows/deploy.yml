@@ -62,13 +62,10 @@ jobs:
         script: |
           PROJECT_ROOT="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core"
           PUBLIC_HTML="/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/public_html"
-          
-          # Caminho correto do PHP 8.2 na Hostinger
           PHP_BIN="/opt/alt/php82/usr/bin/php"
           
           cd $PROJECT_ROOT
           
-          # Executa comandos com o PHP correto
           $PHP_BIN artisan migrate --force
           $PHP_BIN artisan config:cache
           $PHP_BIN artisan route:cache
@@ -77,6 +74,6 @@ jobs:
           
           rsync -av $PROJECT_ROOT/public/ $PUBLIC_HTML/
           
-          sed -i "s|__DIR__.'/../storage|'$PROJECT_ROOT'/storage|g" $PUBLIC_HTML/index.php
-          sed -i "s|__DIR__.'/../vendor|'$PROJECT_ROOT'/vendor|g" $PUBLIC_HTML/index.php
-          sed -i "s|__DIR__.'/../bootstrap|'$PROJECT_ROOT'/bootstrap|g" $PUBLIC_HTML/index.php
+          # Correção do sed para usar caminhos relativos seguros e evitar erro de sintaxe
+          # Substitui __DIR__.'/../ por __DIR__.'/../laravel_core/
+          sed -i "s|__DIR__.'/../|__DIR__.'/../laravel_core/|g" $PUBLIC_HTML/index.php

@@ -36,7 +36,9 @@ jobs:
 
     - name: Prepare .env file
       run: |
-        echo "${{ secrets.LARAVEL_ENV }}" > .env
+        cat << 'EOF' > .env
+        ${{ secrets.LARAVEL_ENV }}
+        EOF
 
     - name: Sync files to Hostinger
       uses: easingthemes/ssh-deploy@v5.0.0

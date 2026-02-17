@@ -253,7 +253,9 @@
                         <div class="d-flex justify-content-between align-items-start mb-3">
                             <span class="status-badge status-${statusClass}">${t.status}</span>
                             <div class="dropdown">
-                                <button class="btn btn-link text-muted p-0" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></button>
+                                <button class="btn btn-link text-muted p-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
                                 <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
                                     <li><a class="dropdown-item" href="#" onclick="editTask(${t.id})"><i class="fas fa-edit text-warning me-2"></i>Editar</a></li>
                                     ${completeBtn}

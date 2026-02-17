@@ -6,22 +6,18 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
+    <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800|playfair-display:700" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- Bootstrap CSS (Mantemos o CSS do CDN para garantir estilos, mas o JS virá do Vite) -->
+    <!-- CSS Libraries (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
 
-    <!-- Scripts do Vite (Já incluem o Bootstrap JS) -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+    <!-- Estilos Customizados (Substituindo o SASS) -->
     <style>
         :root {
-            /* Nova paleta azul */
             --primary: #1E4A7A;
             --primary-dark: #0B2B5E;
             --secondary: #4A90E2;
@@ -63,7 +59,6 @@
             top: 0;
             height: 100vh;
             z-index: 1000;
-            /* 🔥 Borda direita substituída por sombra interna suave */
             box-shadow: inset -1px 0 0 rgba(255, 255, 255, 0.05), 5px 0 15px -10px rgba(0,0,0,0.3);
             border-right: none;
         }
@@ -230,14 +225,12 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 2rem;
-            /* 🔥 Borda inferior substituída por sombra + gradiente */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             border-bottom: none;
             z-index: 10;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Gradiente sutil na parte inferior do header para transição */
         .main-header::after {
             content: '';
             position: absolute;
@@ -752,8 +745,7 @@
     </div>
 </div>
 
-<!-- Scripts -->
-<!-- Bootstrap JS via CDN para garantir funcionamento se o Vite não estiver rodando no localhost -->
+<!-- Scripts (CDN) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/imask"></script>

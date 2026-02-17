@@ -753,7 +753,8 @@
 </div>
 
 <!-- Scripts -->
-<!-- Removido o Bootstrap Bundle CDN para evitar conflito com o Vite -->
+<!-- Bootstrap JS via CDN para garantir funcionamento se o Vite não estiver rodando no localhost -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://unpkg.com/imask"></script>
 <script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>

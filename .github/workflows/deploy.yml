@@ -36,7 +36,10 @@ jobs:
 
     - name: Prepare .env file
       run: |
-        echo "${{ secrets.LARAVEL_ENV }}" > .env
+        cat << 'EOF' > .env
+        ${{ secrets.LARAVEL_ENV }}
+        EOF
+        
 
     # Volta para o Rsync (SSH) que é mais rápido
     - name: Sync files to Hostinger

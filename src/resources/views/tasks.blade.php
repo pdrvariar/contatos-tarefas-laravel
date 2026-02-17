@@ -22,12 +22,12 @@
                     <div class="col-md-3">
                         <div class="input-group">
                             <span class="input-group-text bg-light border-end-0"><i class="fas fa-tags text-muted"></i></span>
-                            <input type="text" class="form-control bg-light border-start-0" id="search_tags" placeholder="Tags">
+                            <input type="text" class="form-control bg-light border-start-0" id="search_tags" placeholder="Filtrar por tags">
                         </div>
                     </div>
                     <div class="col-md-3">
                         <select class="form-select bg-light" id="search_status">
-                            <option value="">Todos os status</option>
+                            <option value="">Todos os Status</option>
                             <option value="Pendente">Pendente</option>
                             <option value="Em Andamento">Em Andamento</option>
                             <option value="Concluída">Concluída</option>
@@ -35,22 +35,26 @@
                         </select>
                     </div>
                     <div class="col-md-3 d-flex gap-2 justify-content-end">
-                        <button type="submit" class="btn btn-primary-modern btn-modern">Filtrar</button>
-                        <button type="button" class="btn btn-outline-modern btn-modern" onclick="clearSearch()">Limpar</button>
+                        <button type="submit" class="btn btn-primary-modern btn-modern">
+                            <i class="fas fa-filter me-2"></i>Filtrar
+                        </button>
+                        <button type="button" class="btn btn-outline-modern btn-modern" onclick="clearSearch()">
+                            Limpar
+                        </button>
                     </div>
                 </div>
             </form>
         </div>
 
-        <!-- Cards de tarefas -->
-        <div class="row g-4" id="tasks-list"></div>
+        <!-- Lista de Tarefas -->
+        <div class="row" id="tasks-list"></div>
 
         <div id="no-tasks" class="text-center py-5 d-none">
             <i class="fas fa-clipboard-list fa-3x text-light mb-3"></i>
             <h5>Nenhuma tarefa encontrada</h5>
-            <p class="text-muted">Crie sua primeira tarefa agora.</p>
+            <p class="text-muted">Crie uma nova tarefa para começar.</p>
             <button class="btn btn-primary-modern btn-modern" data-bs-toggle="modal" data-bs-target="#taskModal" onclick="clearTaskForm()">
-                Nova Tarefa
+                Criar Tarefa
             </button>
         </div>
 
@@ -58,7 +62,7 @@
     </div>
 
     <!-- Modal de Tarefa -->
-    <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 550px;">
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-hidden="true" style="--bs-modal-width: 500px;">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);">
                 <div class="modal-header border-0 bg-light p-4">
@@ -68,7 +72,7 @@
                         </div>
                         <div>
                             <h5 class="modal-title fw-bold" id="taskModalLabel" style="color: var(--text-primary); font-size: 1.25rem;">Nova Tarefa</h5>
-                            <p class="small text-muted mb-0">Organize seu dia</p>
+                            <p class="small text-muted mb-0">Defina os detalhes da tarefa</p>
                         </div>
                     </div>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -80,31 +84,22 @@
 
                         <div class="mb-3">
                             <label class="form-label fw-semibold small text-uppercase text-muted">Descrição</label>
-                            <div class="input-group">
-                                <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-align-left text-muted"></i></span>
-                                <textarea class="form-control bg-white border-start-0" id="description" rows="3" required placeholder="Ex.: Reunião com cliente" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;"></textarea>
-                            </div>
+                            <textarea class="form-control bg-white" id="description" rows="3" required placeholder="O que precisa ser feito?" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;"></textarea>
                         </div>
 
-                        <div class="row mb-3">
-                            <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label fw-semibold small text-uppercase text-muted">Prazo</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="far fa-calendar text-muted"></i></span>
-                                    <input type="datetime-local" class="form-control bg-white border-start-0" id="due_date" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
-                                </div>
+                                <input type="datetime-local" class="form-control bg-white" id="due_date" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label class="form-label fw-semibold small text-uppercase text-muted">Status</label>
-                                <div class="input-group">
-                                    <span class="input-group-text bg-white border-end-0" style="border-color: var(--border-color);"><i class="fas fa-tag text-muted"></i></span>
-                                    <select class="form-select bg-white border-start-0" id="status" style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
-                                        <option value="Pendente">Pendente</option>
-                                        <option value="Em Andamento">Em Andamento</option>
-                                        <option value="Concluída">Concluída</option>
-                                        <option value="Cancelada">Cancelada</option>
-                                    </select>
-                                </div>
+                                <select class="form-select bg-white" id="status" required style="border-color: var(--border-color); padding: 0.6rem 0.75rem;">
+                                    <option value="Pendente">Pendente</option>
+                                    <option value="Em Andamento">Em Andamento</option>
+                                    <option value="Concluída">Concluída</option>
+                                    <option value="Cancelada">Cancelada</option>
+                                </select>
                             </div>
                         </div>
 
@@ -128,135 +123,46 @@
 
     <style>
         .task-card {
-            background: white;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 1.25rem;
             transition: all 0.2s;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            background: var(--bg-card);
         }
         .task-card:hover {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             border-color: var(--primary);
         }
         .status-badge {
-            font-size: 0.7rem;
+            font-size: 0.75rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
             text-transform: uppercase;
-            font-weight: 700;
-            padding: 0.25rem 0.5rem;
-            border-radius: 6px;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.5px;
         }
         .status-Pendente { background: #FFF0B3; color: #172B4D; }
         .status-Em-Andamento { background: #DEEBFF; color: #0747A6; }
         .status-Concluída { background: #E3FCEF; color: #006644; }
         .status-Cancelada { background: #FFEBE6; color: #BF2600; }
 
-        .btn-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-            border: 1px solid var(--border-color);
-            background: white;
-            color: var(--text-secondary);
-        }
-        .btn-edit:hover { color: var(--primary); border-color: var(--primary); background: #E6F0FA; }
-        .btn-delete:hover { color: #ef4444; border-color: #ef4444; background: #fef2f2; }
-
-        .form-control:focus, .form-select:focus {
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(30, 74, 122, 0.1) !important;
-        }
-
-        .input-group-text {
-            background: #f8fafc;
-            border: 1px solid var(--border-color);
-            transition: all 0.2s;
-        }
-        .input-group:focus-within .input-group-text {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        .tagify {
-            --tagify-dd-bg-color: #fff;
-            --tags-border-color: var(--border-color);
-            --tags-hover-border-color: var(--primary);
-            --tags-focus-border-color: var(--primary);
-            border-radius: 0 8px 8px 0 !important;
-            border-color: var(--border-color) !important;
-            background: #fff;
-            padding: 2px 6px !important;
-            height: auto !important;
-            flex: 1;
-        }
-
-        .tagify:hover {
-            border-color: var(--primary) !important;
-        }
-
-        .tagify.tagify--focus {
-            border-color: var(--primary) !important;
-            box-shadow: 0 0 0 0.25rem rgba(30, 74, 122, 0.1) !important;
-        }
-
-        .tagify__tag {
-            background: #e2e8f0 !important;
-            border-radius: 6px !important;
-            padding: 2px 6px !important;
-            margin: 3px !important;
-            font-weight: 500 !important;
-            border: none !important;
-        }
-
-        .tagify__tag > div {
-            padding: 0.2em 0.5em !important;
-        }
-
-        .tagify__tag__removeBtn {
-            margin-right: 4px !important;
-            margin-left: 2px !important;
-            color: currentColor !important;
-            opacity: 0.5;
-        }
-
-        .tagify__tag__removeBtn:hover {
-            opacity: 1;
-            background: rgba(0,0,0,0.1) !important;
-        }
-
-        .tagify__dropdown {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1) !important;
-            border: 1px solid var(--border-color) !important;
-            border-radius: 8px !important;
-            overflow: hidden !important;
-        }
-
-        .tagify__dropdown__item {
-            padding: 8px 12px !important;
-            border-radius: 0 !important;
-        }
-
-        .tagify__dropdown__item--active {
-            background: var(--primary) !important;
-            color: white !important;
+        .badge-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            margin-right: 4px;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 4px;
         }
     </style>
-@endsection
+@endpush
 
 @push('scripts')
     <script>
         let currentTasksPage = 1;
         let tagifyInput, tagifySearch;
 
-        // Cores inspiradas no Jira/Modernas
         const colorMap = {
             primary: { bg: '#DEEBFF', text: '#0747A6', border: '#B3D4FF' },
             dark: { bg: '#EAE6FF', text: '#403294', border: '#C0B6F2' },
@@ -325,39 +231,39 @@
         }
 
         function renderTasks(tasks) {
-            const container = document.getElementById('tasks-list');
+            const list = document.getElementById('tasks-list');
             const noTasks = document.getElementById('no-tasks');
             if (!tasks || tasks.length === 0) {
-                container.innerHTML = '';
+                list.innerHTML = '';
                 noTasks.classList.remove('d-none');
                 return;
             }
             noTasks.classList.add('d-none');
-
-            container.innerHTML = tasks.map(t => {
-                const tags = t.tags?.map(tag => `<span class="badge-tag me-1" style="${getTagStyle(tag.color)}">${tag.name}</span>`).join('') || '';
+            list.innerHTML = tasks.map(t => {
                 const statusClass = t.status.replace(' ', '-');
-                const due = t.due_date ? new Date(t.due_date).toLocaleString('pt-BR', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'}) : 'Sem prazo';
+                const date = t.due_date ? new Date(t.due_date).toLocaleString('pt-BR').substring(0, 16) : 'Sem prazo';
+                const tags = t.tags?.map(tag => `<span class="badge-tag" style="${getTagStyle(tag.color)}">${tag.name}</span>`).join('') || '';
+                const completeBtn = t.status !== 'Concluída' ? `<li><a class="dropdown-item" href="#" onclick="completeTask(${t.id})"><i class="fas fa-check text-success me-2"></i>Concluir</a></li>` : '';
+
                 return `
-                <div class="col-md-6 col-lg-4">
-                    <div class="task-card p-4">
-                        <div class="d-flex justify-content-between align-items-start mb-2">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card h-100 task-card p-4">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
                             <span class="status-badge status-${statusClass}">${t.status}</span>
                             <div class="dropdown">
                                 <button class="btn btn-link text-muted p-0" data-bs-toggle="dropdown"><i class="fas fa-ellipsis-v"></i></button>
-                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow-sm">
-                                    <li><a class="dropdown-item" href="#" onclick="editTask(${t.id})"><i class="fas fa-edit me-2 text-warning"></i>Editar</a></li>
-                                    ${t.status !== 'Concluída' ? `<li><a class="dropdown-item" href="#" onclick="completeTask(${t.id})"><i class="fas fa-check me-2 text-success"></i>Concluir</a></li>` : ''}
+                                <ul class="dropdown-menu dropdown-menu-end border-0 shadow">
+                                    <li><a class="dropdown-item" href="#" onclick="editTask(${t.id})"><i class="fas fa-edit text-warning me-2"></i>Editar</a></li>
+                                    ${completeBtn}
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item text-danger" href="#" onclick="deleteTask(${t.id})"><i class="fas fa-trash me-2"></i>Excluir</a></li>
                                 </ul>
                             </div>
                         </div>
-                        <p class="fw-semibold mb-3">${t.description}</p>
-                        <div class="mb-2">${tags}</div>
-                        <div class="d-flex align-items-center text-muted small mt-3">
-                            <i class="far fa-calendar me-2"></i>
-                            <span>${due}</span>
+                        <h6 class="fw-bold mb-2" style="color: var(--text-primary); min-height: 3rem;">${t.description}</h6>
+                        <div class="mb-3">${tags}</div>
+                        <div class="pt-3 border-top mt-auto d-flex align-items-center text-muted small">
+                            <i class="far fa-clock me-2"></i>${date}
                         </div>
                     </div>
                 </div>
@@ -382,18 +288,18 @@
             nav.innerHTML = html;
         }
 
-        function clearSearch() {
-            document.getElementById('search_term').value = '';
-            document.getElementById('search_status').value = '';
-            if (tagifySearch) tagifySearch.removeAllTags();
-            loadTasks(1);
-        }
-
         function clearTaskForm() {
             document.getElementById('task_id').value = '';
             document.getElementById('taskForm').reset();
             if (tagifyInput) tagifyInput.removeAllTags();
             document.getElementById('taskModalLabel').innerText = 'Nova Tarefa';
+        }
+
+        function clearSearch() {
+            document.getElementById('search_term').value = '';
+            document.getElementById('search_status').value = '';
+            if (tagifySearch) tagifySearch.removeAllTags();
+            loadTasks(1);
         }
 
         async function editTask(id) {
@@ -402,7 +308,7 @@
             const t = json.data;
             document.getElementById('task_id').value = t.id;
             document.getElementById('description').value = t.description;
-            if (t.due_date) document.getElementById('due_date').value = t.due_date.substring(0,16);
+            if (t.due_date) document.getElementById('due_date').value = t.due_date.substring(0, 16);
             document.getElementById('status').value = t.status;
             if (tagifyInput) {
                 tagifyInput.removeAllTags();
@@ -433,7 +339,7 @@
                 bootstrap.Modal.getInstance(document.getElementById('taskModal')).hide();
                 loadTasks(currentTasksPage);
                 initTagify();
-                Swal.fire({ icon: 'success', title: id ? 'Tarefa atualizada!' : 'Tarefa criada!', toast: true, position: 'top-end', timer: 2000 });
+                Swal.fire({ icon: 'success', title: id ? 'Tarefa atualizada!' : 'Tarefa criada!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
             } else {
                 const err = await res.json();
                 Swal.fire('Erro!', err.message || 'Verifique os dados.', 'error');
@@ -444,9 +350,7 @@
             const res = await fetch(`/web-api/tasks/${id}/complete`, { method: 'PATCH', headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' } });
             if (res.ok) {
                 loadTasks(currentTasksPage);
-                Swal.fire({ icon: 'success', title: 'Tarefa concluída!', toast: true, position: 'top-end', timer: 2000 });
-            } else {
-                Swal.fire('Erro!', 'Não foi possível concluir.', 'error');
+                Swal.fire({ icon: 'success', title: 'Tarefa concluída!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
             }
         }
 

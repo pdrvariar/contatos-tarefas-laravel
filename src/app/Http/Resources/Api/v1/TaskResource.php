@@ -7,6 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class TaskResource extends JsonResource
 {
+    //FUNCAO NOVA
     public function toArray(Request $request): array
     {
         return [

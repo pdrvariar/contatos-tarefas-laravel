@@ -24,29 +24,35 @@ jobs:
     - name: Install Composer Dependencies
       run: composer install --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+
+    - name: Install NPM Dependencies and Build
+      run: |
+        npm ci
+        npm run build
+
     - name: Prepare .env file
       run: |
         echo "${{ secrets.LARAVEL_ENV }}" > .env
 
-    # Upload via FTP usando o usuário específico do FTP
-    - name: Upload files via FTP
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+    # Volta para o Rsync (SSH) que é mais rápido
+    - name: Sync files to Hostinger
+      uses: easingthemes/ssh-deploy@v5.0.0
       with:
-        server: ${{ secrets.HOSTINGER_IP }}
-        username: ${{ secrets.FTP_USER }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./src/
-        # Ajuste crítico: Se o usuário FTP cai na public_html, precisamos subir um nível ou ajustar.
-        # Vou tentar o caminho absoluto, que geralmente funciona se o usuário tiver permissão.
-        server-dir: /domains/academy2u.com/laravel_core/
-        exclude: |
-          **/.git*
-          **/.git*/**
-          **/node_modules/**
-          **/tests/**
-          **/storage/logs/**
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        # Adicionado ServerAliveInterval para manter a conexão viva e ConnectTimeout maior
+        SSH_CMD_ARGS: "-o ConnectTimeout=60 -o ServerAliveInterval=60 -o StrictHostKeyChecking=no"
+        ARGS: "-rlgoDzvc -i --delete"
+        SOURCE: "src/"
+        TARGET: "/home/${{ secrets.HOSTINGER_USER }}/domains/academy2u.com/laravel_core" 
+        REMOTE_HOST: ${{ secrets.HOSTINGER_IP }}
+        REMOTE_PORT: ${{ secrets.HOSTINGER_PORT }}
+        REMOTE_USER: ${{ secrets.HOSTINGER_USER }}
+        EXCLUDE: "/node_modules/, /.git/, /.github/, /tests/, /storage/logs/*"
 
-    # Comandos via SSH usando o usuário SSH
     - name: Execute Remote Commands
       uses: appleboy/ssh-action@master
       with:

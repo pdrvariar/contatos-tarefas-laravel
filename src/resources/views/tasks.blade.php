@@ -342,6 +342,12 @@
                 const modal = bootstrap.Modal.getInstance(modalEl);
                 if (modal) modal.hide();
 
+                // Força a remoção de possíveis backdrops residuais e restaura o scroll
+                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                document.body.classList.remove('modal-open');
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+
                 loadTasks(currentTasksPage);
                 initTagify();
                 Swal.fire({ icon: 'success', title: id ? 'Tarefa atualizada!' : 'Tarefa criada!', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });

@@ -372,10 +372,16 @@
                 });
 
                 if (res.ok) {
-                    // Fecha o modal ANTES de mostrar o alerta para evitar travamento
+                    // Fecha o modal e remove backdrop manualmente se necessário
                     const modalEl = document.getElementById('contactModal');
                     const modal = bootstrap.Modal.getInstance(modalEl);
                     if (modal) modal.hide();
+
+                    // Força a remoção de possíveis backdrops residuais e restaura o scroll
+                    document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
 
                     loadContacts(currentPage);
                     initTagify(); // Atualiza whitelist

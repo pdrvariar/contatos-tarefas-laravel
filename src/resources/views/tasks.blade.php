@@ -338,10 +338,13 @@
                 body: JSON.stringify(data)
             });
             if (res.ok) {
-                bootstrap.Modal.getInstance(document.getElementById('taskModal')).hide();
+                const modalEl = document.getElementById('taskModal');
+                const modal = bootstrap.Modal.getInstance(modalEl);
+                if (modal) modal.hide();
+
                 loadTasks(currentTasksPage);
                 initTagify();
-                Swal.fire({ icon: 'success', title: id ? 'Tarefa atualizada!' : 'Tarefa criada!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+                Swal.fire({ icon: 'success', title: id ? 'Tarefa atualizada!' : 'Tarefa criada!', toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
             } else {
                 const err = await res.json();
                 Swal.fire('Erro!', err.message || 'Verifique os dados.', 'error');

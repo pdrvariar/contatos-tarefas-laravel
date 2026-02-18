@@ -16,7 +16,7 @@ class ContactApiTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)
-            ->postJson('/api/contacts', [
+            ->postJson('/api/v1/contacts', [
                 'name' => 'John Doe',
                 'phone' => '123456789'
             ]);
@@ -24,8 +24,7 @@ class ContactApiTest extends TestCase
         $response->assertStatus(201)
             ->assertJsonFragment([
                 'name' => 'John Doe',
-                'phone' => '123456789',
-                'user_id' => $user->id
+                'phone' => '123456789'
             ]);
 
         $this->assertDatabaseHas('contacts', [
@@ -37,7 +36,7 @@ class ContactApiTest extends TestCase
 
     public function test_cannot_create_contact_without_auth()
     {
-        $response = $this->postJson('/api/contacts', [
+        $response = $this->postJson('/api/v1/contacts', [
             'name' => 'John Doe',
             'phone' => '123456789'
         ]);

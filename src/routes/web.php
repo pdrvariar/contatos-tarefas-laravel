@@ -5,6 +5,9 @@ use App\Http\Controllers\Web\ContactController;
 use App\Http\Controllers\Web\TaskController;
 use App\Http\Controllers\Web\BookController;
 use App\Http\Controllers\Web\ProfileController;
+use App\Livewire\Book\Index as BookIndex;
+use App\Livewire\Book\Create as BookCreate;
+use App\Livewire\Book\Edit as BookEdit;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -23,7 +26,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // Rotas principais que carregam as Views
     Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
     Route::get('/tasks', [TaskController::class, 'index'])->name('tasks.index');
-    Route::resource('books', BookController::class);
+
+    // CRUD de Books com Livewire
+    Route::get('/books', BookIndex::class)->name('books.index');
+    Route::get('/books/create', BookCreate::class)->name('books.create');
+    Route::get('/books/{book}/edit', BookEdit::class)->name('books.edit');
+    Route::get('/books/{book}', [BookController::class, 'show'])->name('books.show'); // Mantém o show tradicional ou migra depois
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');

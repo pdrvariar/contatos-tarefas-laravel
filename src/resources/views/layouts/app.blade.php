@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap5.min.css">
+    @livewireStyles
 
     <!-- Estilos Customizados (Substituindo o SASS) -->
     <style>
@@ -643,8 +644,8 @@
                         <span>Tarefas</span>
                     </a>
                 </li>
-                <li class="nav-item {{ Request::routeIs('books.index') ? 'active' : '' }}">
-                    <a href="{{ route('books.index') }}" class="nav-link">
+                <li class="nav-item {{ Request::routeIs('books.*') ? 'active' : '' }}">
+                    <a href="{{ route('books.index') }}" class="nav-link" wire:navigate>
                         <i class="fas fa-book"></i>
                         <span>Livros</span>
                     </a>
@@ -727,17 +728,31 @@
                                 <li class="breadcrumb-item active" aria-current="page">@yield('header_title', 'Visão Geral')</li>
                             </ol>
                         </nav>
-                        <h4 class="fw-bold mb-0" style="color: #0B2B5E;">@yield('header_title', 'Dashboard')</h4>
+                        <h4 class="fw-bold mb-0" style="color: #0B2B5E;">
+                            @if(isset($header_title))
+                                {{ $header_title }}
+                            @else
+                                @yield('header_title', 'Dashboard')
+                            @endif
+                        </h4>
                     </div>
                     <div>
-                        @yield('header_actions')
+                        @if(isset($header_actions))
+                            {{ $header_actions }}
+                        @else
+                            @yield('header_actions')
+                        @endif
                     </div>
                 </div>
             </div>
         @endauth
 
         <main class="content-body">
-            @yield('content')
+            @if(isset($slot))
+                {{ $slot }}
+            @else
+                @yield('content')
+            @endif
         </main>
 
         <footer class="main-footer">
@@ -806,5 +821,6 @@
     });
 </script>
 @stack('scripts')
+@livewireScripts
 </body>
 </html>

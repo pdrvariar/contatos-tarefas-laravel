@@ -38,19 +38,21 @@
 
         <!-- Tabela de contatos -->
         <div class="card border-0 shadow-sm">
-            <div class="table-responsive">
-                <table class="table table-hover align-middle mb-0" id="contacts-table">
-                    <thead class="bg-light">
-                    <tr>
-                        <th class="ps-4 py-3 text-muted fw-bold text-uppercase small">Nome</th>
-                        <th class="py-3 text-muted fw-bold text-uppercase small">E-mail</th>
-                        <th class="py-3 text-muted fw-bold text-uppercase small">Telefone</th>
-                        <th class="py-3 text-muted fw-bold text-uppercase small">Tags</th>
-                        <th class="pe-4 py-3 text-end text-muted fw-bold text-uppercase small">Ações</th>
-                    </tr>
-                    </thead>
-                    <tbody id="contacts-list"></tbody>
-                </table>
+            <div class="card-body p-0">
+                <div class="table-responsive p-3">
+                    <table class="table table-hover align-middle mb-0" id="contacts-table" style="width: 100%;">
+                        <thead class="table-light">
+                        <tr>
+                            <th class="ps-4 py-3 text-muted fw-bold text-uppercase small">Nome</th>
+                            <th class="py-3 text-muted fw-bold text-uppercase small">E-mail</th>
+                            <th class="py-3 text-muted fw-bold text-uppercase small">Telefone</th>
+                            <th class="py-3 text-muted fw-bold text-uppercase small">Tags</th>
+                            <th class="pe-4 py-3 text-end text-muted fw-bold text-uppercase small" data-orderable="false">Ações</th>
+                        </tr>
+                        </thead>
+                        <tbody id="contacts-list"></tbody>
+                    </table>
+                </div>
             </div>
 
             <div id="no-contacts" class="text-center py-5 d-none">
@@ -63,8 +65,6 @@
                     </button>
                 </div>
             </div>
-
-            <div class="card-footer bg-white border-0 py-3" id="pagination-nav"></div>
         </div>
     </div>
 
@@ -124,7 +124,7 @@
             width: 38px;
             height: 38px;
             background-color: #e0e7ff;
-            color: var(--primary-color);
+            color: var(--primary);
             font-weight: 700;
             display: flex;
             align-items: center;
@@ -145,9 +145,9 @@
             margin-left: 0.25rem;
         }
         .btn-action:hover {
-            background-color: var(--bg-hover);
-            color: var(--primary-color);
-            border-color: var(--primary-color);
+            background-color: #f8fafc;
+            color: var(--primary);
+            border-color: var(--primary);
         }
         .btn-delete:hover {
             color: #ef4444;
@@ -169,8 +169,8 @@
 @push('scripts')
     <script>
         let userRole = '{{ Auth::user()->role }}';
-        let currentPage = 1;
         let phoneMask, tagifyInput, tagifySearch;
+        let contactsTable;
 
         // Mapa de cores para tags (Jira style)
         const colorMap = {
@@ -232,11 +232,14 @@
             }
         }
 
-        async function loadContacts(page = 1) {
-            currentPage = page;
+        async function loadContacts() {
             const term = document.getElementById('search_term').value;
             const tags = document.getElementById('search_tags').value;
-            let url = `/web-api/contacts?page=${page}`;
+
+            // Se o DataTables já foi inicializado, usamos o filtro dele se for busca local,
+            // mas como o código faz fetch, vamos manter o fetch e reinicializar a tabela.
+
+            let url = `/web-api/contacts?per_page=1000`;
             if (term) url += `&search=${encodeURIComponent(term)}`;
             if (tags) url += `&tags=${encodeURIComponent(tags)}`;
 
@@ -244,7 +247,6 @@
                 const res = await fetch(url, { headers: { 'Accept': 'application/json' } });
                 const data = await res.json();
                 renderContacts(data.data);
-                renderPagination(data);
             } catch (error) {
                 console.error(error);
             }
@@ -253,17 +255,23 @@
         function renderContacts(contacts) {
             const tbody = document.getElementById('contacts-list');
             const noContacts = document.getElementById('no-contacts');
-            const table = document.getElementById('contacts-table');
+            const tableContainer = document.querySelector('.table-responsive');
+
+            // Destrói a tabela se já existir
+            if (contactsTable) {
+                contactsTable.destroy();
+                contactsTable = null;
+            }
 
             if (!contacts || contacts.length === 0) {
                 tbody.innerHTML = '';
                 noContacts.classList.remove('d-none');
-                table.classList.add('d-none');
+                tableContainer.classList.add('d-none');
                 return;
             }
 
             noContacts.classList.add('d-none');
-            table.classList.remove('d-none');
+            tableContainer.classList.remove('d-none');
 
             tbody.innerHTML = contacts.map(c => {
                 const tags = c.tags?.map(t => `<span class="badge-tag" style="${getTagStyle(t.color)}">${t.name}</span>`).join('') || '-';
@@ -287,32 +295,30 @@
                 </tr>
             `;
             }).join('');
+
+            // Inicializa DataTables
+            contactsTable = $("#contacts-table").DataTable({
+                language: { url: "//cdn.datatables.net/plug-ins/1.13.5/i18n/pt-BR.json" },
+                order: [[0, "asc"]],
+                pageLength: 10,
+                lengthMenu: [5, 10, 25, 50],
+                autoWidth: false,
+                searching: false, // Desativado pois usamos o nosso formulário de filtro
+                dom: "<'row mb-3'<'col-sm-6'l><'col-sm-6 text-end'f>>" +
+                     "<'row'<'col-sm-12'tr>>" +
+                     "<'row mt-3'<'col-sm-5'i><'col-sm-7'p>>"
+            });
+
+            // Esconde a busca padrão do DataTables se preferir usar o seu filtro personalizado
+            // $("#contacts-table_filter").hide();
         }
 
-        function renderPagination(data) {
-            const nav = document.getElementById('pagination-nav');
-            if (data.last_page <= 1) { nav.innerHTML = ''; return; }
-
-            let html = '<ul class="pagination justify-content-center mb-0">';
-            html += `<li class="page-item ${data.current_page === 1 ? 'disabled' : ''}"><a class="page-link" href="#" onclick="loadContacts(${data.current_page-1})">Anterior</a></li>`;
-
-            for (let i = 1; i <= data.last_page; i++) {
-                if (i === 1 || i === data.last_page || (i >= data.current_page-2 && i <= data.current_page+2)) {
-                    html += `<li class="page-item ${i === data.current_page ? 'active' : ''}"><a class="page-link" href="#" onclick="loadContacts(${i})">${i}</a></li>`;
-                } else if (i === data.current_page-3 || i === data.current_page+3) {
-                    html += `<li class="page-item disabled"><span class="page-link">...</span></li>`;
-                }
-            }
-
-            html += `<li class="page-item ${data.current_page === data.last_page ? 'disabled' : ''}"><a class="page-link" href="#" onclick="loadContacts(${data.current_page+1})">Próximo</a></li>`;
-            html += '</ul>';
-            nav.innerHTML = html;
-        }
+        // Removida renderPagination manual
 
         function clearSearch() {
             document.getElementById('search_term').value = '';
             if (tagifySearch) tagifySearch.removeAllTags();
-            loadContacts(1);
+            loadContacts();
         }
 
         function clearForm() {
@@ -377,7 +383,7 @@
                     const modal = bootstrap.Modal.getInstance(modalEl);
                     if (modal) modal.hide();
 
-                    loadContacts(currentPage);
+                    loadContacts();
                     initTagify(); // Atualiza whitelist
 
                     Swal.fire({
@@ -416,7 +422,7 @@
                 });
 
                 if (res.ok) {
-                    loadContacts(currentPage);
+                    loadContacts();
                     Swal.fire({
                         icon: 'success',
                         title: 'Excluído!',

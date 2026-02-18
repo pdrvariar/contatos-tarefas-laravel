@@ -27,7 +27,8 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $filters = $request->only(['search', 'tags']);
-        $contacts = $this->contactService->getAllContactsForUser(Auth::user(), 10, $filters);
+        $perPage = $request->get('per_page', 10);
+        $contacts = $this->contactService->getAllContactsForUser(Auth::user(), (int)$perPage, $filters);
 
         return ContactResource::collection($contacts)->additional([
             'status' => 'success',
